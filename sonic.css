@@ -1,0 +1,100 @@
+/* General Body Styling */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #1e1e1e; /* Dark background for a cool Sonic vibe */
+    color: #f0f0f0; /* Light text color for contrast */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    overflow: hidden; /* Prevents horizontal overflow */
+  }
+  
+  /* Container Styling */
+  .container {
+    background-color: #333; /* Darker container background */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    width: 80%;
+    max-width: 600px;
+    text-align: center;
+    overflow: auto; /* Allow scrolling if content overflows */
+  }
+  
+  /* Heading Styling */
+  h1 {
+    font-size: 2.5rem;
+    color: #1e90ff; /* Sonic blue */
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+    padding: 10px; /* Added padding for spacing */
+    word-wrap: break-word; /* Prevents long words from overflowing */
+  }
+  
+  /* Image Styling (if you're using an image for the title or content) */
+  img {
+    width: 100%; /* Make the image responsive */
+    height: auto; /* Maintain aspect ratio */
+    border-radius: 5px;
+    margin-top: 20px; /* Adds spacing between image and other content */
+  }
+  
+  /* Music List Styling */
+  #music-list {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px; /* Space between items */
+  }
+  
+  /* Individual Song Item Styling */
+  .music-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #444; /* Slightly lighter background */
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s ease;
+  }
+  
+  .music-item:hover {
+    background-color: #555; /* Slight hover effect */
+  }
+  
+  .music-item span {
+    font-size: 1.2rem;
+    color: #fff;
+    text-transform: capitalize; /* Capitalize first letter of each word */
+    flex-grow: 1; /* Allow the title to take up remaining space */
+  }
+  
+  /* Play Button Styling */
+  button {
+    background-color: #1e90ff; /* Sonic Blue */
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
+  }
+  
+  button:hover {
+    background-color: #4682b4; /* Lighter blue when hovered */
+  }
+  
+  /* Audio Player Styling */
+  audio {
+    width: 100%;
+    margin-top: 20px;
+    background-color: #333; /* Dark background to match the theme */
+    border-radius: 5px;
+    border: 1px solid #444; /* Border around the audio player */
+    outline: none;
+  }
+  

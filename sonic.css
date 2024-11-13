@@ -1,3 +1,19 @@
+/*Some root colors for light theme*/
+:root {
+  --background-color: #ffffff;
+  --text-color: #333333;
+  --button-background: #3498db;
+  --button-text: #ffffff;
+}
+
+/*Some Dark theme colors*/
+[data-theme="dark"] {
+  --background-color: #1a1a2e;
+  --text-color: #e0e0e0;
+  --button-background: #0f3460;
+  --button-text: #e0e0e0;
+}
+
 /* General Body Styling */
 body {
     font-family: 'Arial', sans-serif;
@@ -14,8 +30,9 @@ body {
   
   /* Container Styling */
   .container {
-    background-color: teal; /* Darker container background */
+    background-color: var(--background-color); /* Darker container background */
     padding: 20px;
+    color: var(--text-color);
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     width: 90%;
@@ -155,3 +172,19 @@ body {
         font-size: 14px;
     }
   }
+
+  /*Here is how to toggle theme*/
+  .theme-switcher{
+    margin-top: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    font-size: 14px;
+    color: var(--text-color);
+  }
+
+#theme-toggle{
+  cursor: pointer;
+  transform: scale(1.2);
+}

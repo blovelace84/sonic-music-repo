@@ -75,3 +75,19 @@ searchButton.addEventListener("click", filterSongs);
 
 // Load songs when the page loads
 loadSongs();
+
+//Theme toggle checkbox
+const themeToggle = document.getElementById('theme-toggle');
+
+//function to switch between light and dark themes
+function toggleTheme() {
+  console.log("Theme toggle clicked!"); //Add this line for debugging
+  if(themeToggle.checked) {
+    document.body.setAttribute("data-theme", "dark");
+  }else{
+    document.body.removeAttribute("data-theme");
+  }
+}
+
+//Adding an event listener for theme toggle
+themeToggle.addEventListener("change", toggleTheme);

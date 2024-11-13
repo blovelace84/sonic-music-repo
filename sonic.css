@@ -1,23 +1,24 @@
 /* General Body Styling */
 body {
     font-family: 'Arial', sans-serif;
-    background-color: #1e1e1e; /* Dark background for a cool Sonic vibe */
-    color: #f0f0f0; /* Light text color for contrast */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    margin: 0;
-    overflow: hidden; /* Prevents horizontal overflow */
+  background-color: mediumblue;
+  color: #f0f0f0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column; /* Ensure content is stacked vertically */
+  height: auto; /* Let the height grow with the content */
+  margin: 0;
+  padding: 20px; /* Add some padding to prevent content from touching edges */
   }
   
   /* Container Styling */
   .container {
-    background-color: #333; /* Darker container background */
+    background-color: teal; /* Darker container background */
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    width: 80%;
+    width: 90%;
     max-width: 600px;
     text-align: center;
     overflow: auto; /* Allow scrolling if content overflows */
@@ -27,16 +28,30 @@ body {
   h1 {
     font-size: 2.5rem;
     color: #1e90ff; /* Sonic blue */
-    margin-bottom: 20px;
+    margin-bottom: 20px 0;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
     padding: 10px; /* Added padding for spacing */
     word-wrap: break-word; /* Prevents long words from overflowing */
+  }
+
+  /* Adjust heading font size on smaller screens */
+@media screen and (max-width: 768px) {
+    h1 {
+      font-size: 2rem; /* Smaller font for tablets and smaller devices */
+    }
+  }
+  
+  @media screen and (max-width: 480px) {
+    h1 {
+      font-size: 1.5rem; /* Even smaller font for mobile devices */
+    }
   }
   
   /* Image Styling (if you're using an image for the title or content) */
   img {
     width: 100%; /* Make the image responsive */
     height: auto; /* Maintain aspect ratio */
+    max-width: 100%; 
     border-radius: 5px;
     margin-top: 20px; /* Adds spacing between image and other content */
   }

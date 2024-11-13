@@ -1,31 +1,77 @@
-document.addEventListener("DOMContentLoaded", () => {
-    const musicListContainer = document.getElementById("music-list");
-    const audioPlayer = document.getElementById("audio-player");
-  
-    // Fetch songs from JSON file
-    fetch('songs.json')
-      .then(response => response.json())
-      .then(musicList => {
-        musicList.forEach(song => {
-          const songItem = document.createElement("div");
-          songItem.classList.add("music-item");
-          songItem.setAttribute("data-audio", song.file);
-  
-          const songTitle = document.createElement("span");
-          songTitle.textContent = song.title;
-  
-          const playButton = document.createElement("button");
-          playButton.textContent = "Play";
-  
-          playButton.addEventListener("click", () => {
-            audioPlayer.src = song.file;
-            audioPlayer.play();
-          });
-  
-          songItem.appendChild(songTitle);
-          songItem.appendChild(playButton);
-          musicListContainer.appendChild(songItem);
-        });
-      })
-      .catch(error => console.error("Error loading songs:", error));
+// Get references to the HTML elements
+const musicList = document.getElementById("music-list");
+const searchBar = document.getElementById("search-bar");
+const searchButton = document.getElementById("search-button");
+
+// Function to fetch songs from JSON file
+async function loadSongs() {
+  try {
+    const response = await fetch("songs.json");
+    songs = await response.json();
+    displaySongs(songs); // Display all songs initially
+  } catch (error) {
+    console.error("Error loading songs:", error);
+  }
+}
+
+// Function to display songs in the music list
+function displaySongs(filteredSongs) {
+  musicList.innerHTML = ""; // Clear current list
+  filteredSongs.forEach(song => {
+    const songItem = document.createElement("div");
+    songItem.classList.add("music-item");
+
+    // Song title
+    const songTitle = document.createElement("span");
+    songTitle.textContent = song.title;
+
+    // Play button
+    const playButton = document.createElement("button");
+    playButton.textContent = "Play";
+    playButton.addEventListener("click", () => playSong(song.src));
+
+    // Add elements to song item and list
+    songItem.appendChild(songTitle);
+    songItem.appendChild(playButton);
+    musicList.appendChild(songItem);
   });
+}
+
+// Function to play a song
+function playSong(src) {
+  if (!src) {
+    console.error("Source for song is undefined.");
+    return;
+  }
+
+  const audioPlayer = document.createElement("audio");
+  audioPlayer.src = src;
+  audioPlayer.controls = true;
+  audioPlayer.autoplay = true;
+
+  // Remove any previous audio player and add the new one
+  const previousAudio = document.querySelector("audio");
+  if (previousAudio) {
+    previousAudio.remove();
+  }
+  musicList.appendChild(audioPlayer);
+}
+
+// Function to handle search filtering
+function filterSongs() {
+  const query = searchBar.value.toLowerCase();
+
+  // Filter songs based on the search query
+  const filteredSongs = songs.filter(song =>
+    song.title.toLowerCase().includes(query)
+  );
+
+  // Display the filtered list of songs
+  displaySongs(filteredSongs);
+}
+
+// Event listener for the search button
+searchButton.addEventListener("click", filterSongs);
+
+// Load songs when the page loads
+loadSongs();

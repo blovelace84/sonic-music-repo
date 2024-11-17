@@ -11,5 +11,8 @@
     {"title": "Escape From the City", "src": "audio/02 Escape from the City.mp3"},
     {"title": "It Doesn't Matter(SA2)", "src": "audio/01 It Doesn't Matter.mp3"},
     {"title": "E.G.G.M.A.N", "src": "audio/07_eggman.mp3"},
-    {"title": "Live and Learn", "src": "audio/08 Live And Learn.mp3"}
+    {"title": "Sonic Boom Opening Theme", "src": "audio/us_opening_theme.mp3"},
+    {"title": "Sonic Boom Full Version", "src": "audio/us_sonic_boom_full.mp3"},
+    {"title": "Sonic Heroes Theme Song", "src": "audio/01 SONIC HEROES.mp3"}
+    
 ]

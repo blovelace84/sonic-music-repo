@@ -18,6 +18,8 @@ fetch("songs.json")
   })
   .catch((error) => console.error("Error loading songs:", error));
 
+
+
 // Populate Song List
 function populateSongList(songs) {
   const songListElement = document.getElementById("songList");
@@ -83,3 +85,40 @@ audioPlayer2.addEventListener("ended", () => {
   currentSongIndex = (currentSongIndex + 1) % songs.length;
   playSong(currentSongIndex);
 });
+
+const songList = document.getElementById("songList");
+const searchBar = document.getElementById("searchBar");
+let currentIndex = 0;
+
+//function for the search bar
+function filteredSongs() {
+  const searchTerm = searchBar.value.toLowerCase();
+  songList.innerHTML = ""; //clear current list
+
+  songs.forEach((song, index) => {
+    if(song.title.toLowerCase().includes(searchTerm)) {
+      const listItem = document.createElement("li");
+      listItem.textContent = song.title;
+      listItem.onclick = () => playSong(index);
+      songList.appendChild(listItem);
+    }
+  });
+
+  //Show message if no results
+  if(songList.innerHTML === "") {
+    songList.innerHTML = "<li>No songs found</li>";
+  }
+}
+
+//display all songs when page loads
+function displaySongs() {
+  songs.forEach((songs, index) =>{
+    const listItem = document.createElement("li");
+    listItem.textContent = song.title;
+    listItem.onclick = () => playSong(index); //click event to play the song
+    songList.appendChild(listItem);
+  });
+}
+
+//Initialize the page
+displaySongs();

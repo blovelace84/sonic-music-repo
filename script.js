@@ -68,16 +68,25 @@ function crossfadeSongs(outgoingPlayer, incomingPlayer,) {
   }, step);
 }
 
-// Play selected song
+// Play a song with crossfade
 function playSong(index) {
   const song = songs[index];
-  if (!song) {
-    console.error("Invalid song index:", index);
-    return;
-  }
+  const outgoingPlayer = isPlayingFirst ? audioPlayer1 : audioPlayer2;
+  const incomingPlayer = isPlayingFirst ? audioPlayer2 : audioPlayer1;
 
-  const audioPlayer = new Audio(song.file);
-  audioPlayer.play().catch((error) => {
-    console.error("Error playing song:", error);
-  });
+  incomingPlayer.src = song.file; // Set the source for the new song
+
+  crossfadeSongs(outgoingPlayer, incomingPlayer); // Perform crossfade
+  isPlayingFirst = !isPlayingFirst; // Toggle between players
 }
+
+// Play the next song when the current one ends
+audioPlayer1.addEventListener("ended", () => {
+  currentSongIndex = (currentSongIndex + 1) % songs.length;
+  playSong(currentSongIndex);
+});
+
+audioPlayer2.addEventListener("ended", () => {
+  currentSongIndex = (currentSongIndex + 1) % songs.length;
+  playSong(currentSongIndex);
+});

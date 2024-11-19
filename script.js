@@ -1,35 +1,27 @@
-//Audio players for crossingfading
+// Dual Audio Players
 let audioPlayer1 = new Audio();
 let audioPlayer2 = new Audio();
-let isPlayingFirst = true; //Toggle between two players
-let crossingfadingDuration = 3000; //3 seconds for crossfade
+let isPlayingFirst = true; // Toggle between the two players
+let crossfadeDuration = 3000; // 3 seconds for crossfade
 
-//load songs from json file
+// Songs Array and Current Index
 let songs = [];
 let currentSongIndex = 0;
 
-// Fetch songs from JSON
+// Fetch Songs from JSON
 fetch("songs.json")
-  .then((response) => {
-    if (!response.ok) {
-      throw new Error("Failed to load songs.json");
-    }
-    return response.json();
-  })
+  .then((response) => response.json())
   .then((data) => {
-    console.log("Songs loaded successfully:", data);
     songs = data;
     populateSongList(songs);
-    playSong(currentSongIndex); 
+    playSong(currentSongIndex); // Start the first song
   })
-  .catch((error) => console.error("Error loading songs:", error)); //"Error loading songs"
+  .catch((error) => console.error("Error loading songs:", error));
 
-// Populate the song list in the UI
+// Populate Song List
 function populateSongList(songs) {
-  console.log("Populating song list:", songs); // Debug log
   const songListElement = document.getElementById("songList");
-  songListElement.innerHTML = ""; // Clear existing songs
-
+  songListElement.innerHTML = "";
   songs.forEach((song, index) => {
     const li = document.createElement("li");
     li.textContent = song.title;
@@ -41,46 +33,47 @@ function populateSongList(songs) {
   });
 }
 
-function crossfadeSongs(outgoingPlayer, incomingPlayer,) {
-  //set initial volume
-  outgoingPlayer.volume = 1;
-  incomingPlayer.volume = 0;
-
-  //play the incoming song
-  incomingPlayer.player();
-
-  //crossfade logic
-  const step = 50; //time between volume adjustments (ms)
-  const fadeSteps = crossfadeDuration / step;
-  let currentStep = 0;
-
-  const fadeInterval = setInterval(() => {
-    currentStep++;
-    outgoingPlayer.volume = Math.max(1 - currentStep / fadeSteps, 0) //fade out
-    incomingPlayer.volume = Math.min(currentStep / fadeSteps, 1); // fade in
-
-    //stop interval when crossfade is complete
-    if(currentStep >= fadeSteps) {
-      clearInterval(fadeInterval);
-      outgoingPlayer.pause();
-      outgoingPlayer.src = ""; //clear the outgoing song
-    }
-  }, step);
-}
-
-// Play a song with crossfade
+// Play Song with Crossfade
 function playSong(index) {
   const song = songs[index];
   const outgoingPlayer = isPlayingFirst ? audioPlayer1 : audioPlayer2;
   const incomingPlayer = isPlayingFirst ? audioPlayer2 : audioPlayer1;
 
-  incomingPlayer.src = song.file; // Set the source for the new song
+  incomingPlayer.src = song.file; // Set the source of the incoming player
 
-  crossfadeSongs(outgoingPlayer, incomingPlayer); // Perform crossfade
-  isPlayingFirst = !isPlayingFirst; // Toggle between players
+  // Perform Crossfade
+  crossfadeSongs(outgoingPlayer, incomingPlayer);
+
+  isPlayingFirst = !isPlayingFirst; // Toggle active player
 }
 
-// Play the next song when the current one ends
+// Crossfade Songs
+function crossfadeSongs(outgoingPlayer, incomingPlayer) {
+  outgoingPlayer.volume = 1;
+  incomingPlayer.volume = 0;
+
+  incomingPlayer.play().catch((error) => {
+    console.error("Error playing song:", error);
+  });
+
+  const step = 50; // Milliseconds between volume adjustments
+  const fadeSteps = crossfadeDuration / step;
+  let currentStep = 0;
+
+  const interval = setInterval(() => {
+    currentStep++;
+    outgoingPlayer.volume = Math.max(1 - currentStep / fadeSteps, 0);
+    incomingPlayer.volume = Math.min(currentStep / fadeSteps, 1);
+
+    if (currentStep >= fadeSteps) {
+      clearInterval(interval);
+      outgoingPlayer.pause();
+      outgoingPlayer.src = ""; // Clear outgoing player's source
+    }
+  }, step);
+}
+
+// Automatically Play Next Song
 audioPlayer1.addEventListener("ended", () => {
   currentSongIndex = (currentSongIndex + 1) % songs.length;
   playSong(currentSongIndex);

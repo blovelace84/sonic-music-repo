@@ -41,6 +41,33 @@ function populateSongList(songs) {
   });
 }
 
+function crossfadeSongs(outgoingPlayer, incomingPlayer,) {
+  //set initial volume
+  outgoingPlayer.volume = 1;
+  incomingPlayer.volume = 0;
+
+  //play the incoming song
+  incomingPlayer.player();
+
+  //crossfade logic
+  const step = 50; //time between volume adjustments (ms)
+  const fadeSteps = crossfadeDuration / step;
+  let currentStep = 0;
+
+  const fadeInterval = setInterval(() => {
+    currentStep++;
+    outgoingPlayer.volume = Math.max(1 - currentStep / fadeSteps, 0) //fade out
+    incomingPlayer.volume = Math.min(currentStep / fadeSteps, 1); // fade in
+
+    //stop interval when crossfade is complete
+    if(currentStep >= fadeSteps) {
+      clearInterval(fadeInterval);
+      outgoingPlayer.pause();
+      outgoingPlayer.src = ""; //clear the outgoing song
+    }
+  }, step);
+}
+
 // Play selected song
 function playSong(index) {
   const song = songs[index];

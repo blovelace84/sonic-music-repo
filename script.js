@@ -1,4 +1,5 @@
 // Dual Audio Players
+let audio = new Audio(); //Declare the audio object
 let audioPlayer1 = new Audio();
 let audioPlayer2 = new Audio();
 let isPlayingFirst = true; // Toggle between the two players
@@ -17,8 +18,6 @@ fetch("songs.json")
     playSong(currentSongIndex); // Start the first song
   })
   .catch((error) => console.error("Error loading songs:", error));
-
-
 
 // Populate Song List
 function populateSongList(songs) {
@@ -112,7 +111,7 @@ function filteredSongs() {
 
 //display all songs when page loads
 function displaySongs() {
-  songs.forEach((songs, index) =>{
+  songs.forEach((song, index) =>{
     const listItem = document.createElement("li");
     listItem.textContent = song.title;
     listItem.onclick = () => playSong(index); //click event to play the song

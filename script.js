@@ -121,3 +121,31 @@ function displaySongs() {
 
 //Initialize the page
 displaySongs();
+
+
+//Get the theme toggle button
+const themeToggle = document.getElementById("theme-toggle");
+
+//Available themes to choose from
+const themes = ["light", "dark", "sonic"];
+let currentThemeIndex = 0;
+
+const savedTheme = localStorage.getItem("theme");
+if(savedTheme){
+  document.documentElement.setAttribute("data-theme", savedTheme);
+  currentThemeIndex = themes.indexOf(savedTheme);
+
+  //Adding an event listener for the button
+  themeToggle.addEventListener("click", () =>{
+
+    //How to cycle through different themes
+    currentThemeIndex = (currentThemeIndex + 1) % themes.length;
+    const selectedTheme = themes[currentThemeIndex];
+
+    //Applying themes selected
+    document.documentElement.setAttribute("data-theme", selectedTheme);
+
+    //saving the themes in localStorage
+    localStorage.setItem("theme", selectedTheme);
+  });
+}

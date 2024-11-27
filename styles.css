@@ -1,27 +1,81 @@
 /*Basic styles for the body*/
 /* Default light theme */
 :root {
-  --background-color: #ffffff;
+  --background-image: url("image/green-hill-zone.png");
   --text-color: #000000;
   --button-color: #007bff;
   --button-text-color: #ffffff;
+  --accent-color: #ffcc00
 }
 
 /* Dark theme */
-[data-theme="dark"] {
-  --background-color: #000000;
+[data-theme="chemical-plant"] {
+  --background-image: url("image/chemical plant.jpg");
   --text-color: #ffffff;
   --button-color: #ffa500; /* Orange for contrast */
   --button-text-color: #000000;
+  --accent-color: #00d4ff;
 }
 
 /* Sonic-themed theme */
-[data-theme="sonic"] {
-  --background-color: #001f3f; /* Deep blue */
-  --text-color: #00d4ff;       /* Cyan-like Sonic color */
-  --button-color: #ff0000;     /* Red (like Sonic's shoes) */
-  --button-text-color: #ffffff;
+[data-theme="sky-sanctuary"] {
+  --background-image: url("image/sky sanctuary.jpg");
+  --background-color: #ffe0a8;
+  --text-color: #000000;
+  --accent-color: #ffa500;
 }
+ 
+p{
+  background-color: dodgerblue;
+  padding: 10px 20px;
+  margin: 20px auto;
+  max-width: 600px;
+}
+
+/* Style the container for better spacing */
+select {
+  appearance: none; /* Remove default browser styling */
+  padding: 10px 15px;
+  font-size: 16px;
+  font-family: 'Arial', sans-serif;
+  background-color: var(--accent-color);
+  color: var(--text-color);
+  border: 2px solid var(--accent-color);
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Adjust for hover and focus states */
+select:hover {
+  background-color: var(--background-color);
+  color: var(--accent-color);
+  border-color: var(--text-color);
+}
+
+select:focus {
+  outline: none; /* Remove default focus outline */
+  border: 2px solid var(--text-color);
+  box-shadow: 0 0 5px var(--accent-color);
+}
+
+/* Add a custom arrow for the dropdown */
+select {
+  background-image: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="%23ffffff"%3E%3Cpath d="M7 10l5 5 5-5z"/%3E%3C/svg%3E');
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  background-size: 12px;
+}
+
+/* Responsive design for smaller screens */
+@media (max-width: 600px) {
+  select {
+    font-size: 14px;
+    padding: 8px 12px;
+  }
+}
+
 
 body{
   background-color: var(--background-color);
@@ -29,6 +83,10 @@ body{
   text-align: center;
   font-family: Arial, sans-serif;
   margin: 0;
+  background-image: var(--background-image);
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
   padding: 20px;
   transition: background-color 0.5s, color 0.5s;
 }
@@ -37,6 +95,7 @@ h1{
   font-size: 2.5em;
   margin-bottom: 20px;
   box-shadow: 2px 2px 4px #000;
+  color: var(--accent-color);
 }
 
 .player{
@@ -46,6 +105,7 @@ h1{
 .song-list{
   list-style: none;
   padding: 0;
+  background-color: dodgerblue;
   margin: 20px auto;
   max-width: 600px;
 }

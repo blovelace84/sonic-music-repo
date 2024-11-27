@@ -122,30 +122,26 @@ function displaySongs() {
 //Initialize the page
 displaySongs();
 
+// script.js
 
-//Get the theme toggle button
-const themeToggle = document.getElementById("theme-toggle");
+// Get the theme selector dropdown
+const themeSelector = document.getElementById("theme-selector");
 
-//Available themes to choose from
-const themes = ["light", "dark", "sonic"];
-let currentThemeIndex = 0;
+// Apply the selected theme
+function applyTheme(theme) {
+  // Set the data-theme attribute to the selected theme
+  document.documentElement.setAttribute("data-theme", theme);
 
-const savedTheme = localStorage.getItem("theme");
-if(savedTheme){
-  document.documentElement.setAttribute("data-theme", savedTheme);
-  currentThemeIndex = themes.indexOf(savedTheme);
-
-  //Adding an event listener for the button
-  themeToggle.addEventListener("click", () =>{
-
-    //How to cycle through different themes
-    currentThemeIndex = (currentThemeIndex + 1) % themes.length;
-    const selectedTheme = themes[currentThemeIndex];
-
-    //Applying themes selected
-    document.documentElement.setAttribute("data-theme", selectedTheme);
-
-    //saving the themes in localStorage
-    localStorage.setItem("theme", selectedTheme);
-  });
+  // Optionally save the theme in localStorage
+  localStorage.setItem("theme", theme);
 }
+
+// Load saved theme on page load
+const savedTheme = localStorage.getItem("theme") || "green-hill";
+applyTheme(savedTheme);
+themeSelector.value = savedTheme;
+
+// Add event listener for theme selection
+themeSelector.addEventListener("change", (e) => {
+  applyTheme(e.target.value);
+});

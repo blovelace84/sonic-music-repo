@@ -8,15 +8,18 @@
   <link rel="icon" type="image/x-icon" href="favicon.ico">
 </head>
 <body>
-  <div id="theme-toggle-container">
-    <button id="theme-toggle">Switch Theme</button>
-  </div>
    <h1>Sonic Sound Oasis</h1>
    <img src="image/sonic the hedgehog.jpg" alt="Sonic the Hedgehog">
    <div class="search-bar">
     <input type="text" id="searchBar" placeholder="Search for a song..." oninput="filteredSongs()">
    </div>
-   <ul class="song-list" id="songList"></ul>
+   <p>Select a theme:</p>
+   <select name="" id="theme-selector">
+    <option value="green-hill">Green Hill Zone</option>
+    <option value="chemical-plant">Chemical Plant</option>
+    <option value="sky-sanctuary">Sky Sanctuary</option>
+   </select>
+    <ul class="song-list" id="songList"></ul>
   <script src="script.js"></script>
   <footer>
     <p>&copy; copyright for Sonic Sound Oasis</p>

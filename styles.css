@@ -1,197 +1,251 @@
-/*Basic styles for the body*/
-/* Default light theme */
-:root {
-  --background-image: url("image/green-hill-zone.png");
-  --text-color: #000000;
-  --button-color: #007bff;
-  --button-text-color: #ffffff;
-  --accent-color: #ffcc00
+body{
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  background-image: url('image/green-hill-zone.png');
+  background-size: cover;
+  background-attachment: fixed;
+  background-position: center;
+  color: white;
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
 }
 
-/* Dark theme */
-[data-theme="chemical-plant"] {
-  --background-image: url("image/chemical plant.jpg");
-  --text-color: #ffffff;
-  --button-color: #ffa500; /* Orange for contrast */
-  --button-text-color: #000000;
-  --accent-color: #00d4ff;
-}
-
-/* Sonic-themed theme */
-[data-theme="sky-sanctuary"] {
-  --background-image: url("image/sky sanctuary.jpg");
-  --background-color: #ffe0a8;
-  --text-color: #000000;
-  --accent-color: #ffa500;
-}
- 
-p{
-  background-color: dodgerblue;
+#mainHeader{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   padding: 10px 20px;
-  margin: 20px auto;
-  max-width: 600px;
+  background: linear-gradient(to right, #0074d9, #ffdc00);
+  color: white;
+  font-family: 'Changa One', sans-serif;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
 }
 
-/* Style the container for better spacing */
-select {
-  appearance: none; /* Remove default browser styling */
+#mainHeader h1{
+  margin: 0;
+  font-size: 2rem;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+}
+
+.logo img{
+  height: 50px;
+  width: auto;
+}
+
+.nav-links{
+  display: flex;
+  gap: 15px;
+}
+
+.theme-toggle{
+  background-color: #ff4136;
+  color: white;
+  border: none;
   padding: 10px 15px;
-  font-size: 16px;
-  font-family: 'Arial', sans-serif;
-  background-color: var(--accent-color);
-  color: var(--text-color);
-  border: 2px solid var(--accent-color);
-  border-radius: 8px;
-  transition: all 0.3s ease;
+  border-radius: 5px;
+  font-size: 1rem;
   cursor: pointer;
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s, transform 0.3s;
 }
 
-/* Adjust for hover and focus states */
-select:hover {
-  background-color: var(--background-color);
-  color: var(--accent-color);
-  border-color: var(--text-color);
+.theme-toggle:hover{
+  background-color: #ff851b;
+  transform: scale(1.1);
 }
 
-select:focus {
-  outline: none; /* Remove default focus outline */
-  border: 2px solid var(--text-color);
-  box-shadow: 0 0 5px var(--accent-color);
+#mainHeader:hover{
+  background: linear-gradient(to right, #ffdc00, #0074d9);
 }
 
-/* Add a custom arrow for the dropdown */
-select {
-  background-image: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="%23ffffff"%3E%3Cpath d="M7 10l5 5 5-5z"/%3E%3C/svg%3E');
-  background-repeat: no-repeat;
-  background-position: right 10px center;
-  background-size: 12px;
-}
+@media (max-width: 768px) {
+  #mainHeader {
+    flex-direction: column;
+    text-align: center;
+  }
 
-/* Responsive design for smaller screens */
-@media (max-width: 600px) {
-  select {
-    font-size: 14px;
-    padding: 8px 12px;
+  #mainHeader h1 {
+    font-size: 1.5rem;
+  }
+
+  .nav-links {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .logo img {
+    height: 40px;
   }
 }
 
-
-body{
-  background-color: var(--background-color);
-  color: var(--text-color);
-  text-align: center;
-  font-family: Arial, sans-serif;
-  margin: 0;
-  background-image: var(--background-image);
+body.green-hill {
+  background-image: url('image/green-hill-zone.png');
   background-size: cover;
-  background-position: center;
-  background-attachment: fixed;
-  padding: 20px;
-  transition: background-color 0.5s, color 0.5s;
 }
 
-h1{
-  font-size: 2.5em;
-  margin-bottom: 20px;
-  box-shadow: 2px 2px 4px #000;
-  color: var(--accent-color);
+body.chemical-plant {
+  background-image: url('image/chemical plant.jpg');
+  background-size: cover;
 }
 
-.player{
-  margin-top: 20px;
+body.sky-sanctuary {
+  background-image: url('image/sky sanctuary.jpg');
+  background-size: cover;
 }
+
+#search-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 20px;
+  gap: 10px; /* Adds space between the input and button */
+}
+
+#searchInput {
+  width: 300px;
+  padding: 10px;
+  font-size: 1rem;
+  border: 2px solid #0074D9; /* Matches your theme */
+  border-radius: 5px;
+  outline: none;
+  transition: border-color 0.3s ease;
+}
+
+#searchInput:focus {
+  border-color: #FF4136; /* Focus effect */
+}
+
+#searchButton {
+  padding: 10px 20px;
+  font-size: 1rem;
+  color: white;
+  background-color: #0074D9;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+#searchButton:hover {
+  background-color: #FF4136; /* Hover effect */
+  transform: scale(1.1); /* Slightly enlarges the button */
+}
+
+#searchButton:active {
+  transform: scale(0.95); /* Shrinks slightly on click */
+}
+
 
 #trackList {
   display: flex;
   flex-direction: column;
-  gap: 10px;
-  margin: 20px;
+  gap: 15px;
+  padding: 20px;
+  margin: auto;
+  max-width: 600px;
 }
 
 .track {
+  background-color: rgba(0, 0, 0, 0.8);
+  padding: 15px;
+  border-radius: 10px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background-color: var(--background-color);
-  padding: 10px;
-  border-radius: 5px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s, background-color 0.3s;
+}
+
+.track:hover {
+  transform: scale(1.05);
+  background-color: rgba(0, 128, 255, 0.8);
 }
 
 .track p {
   margin: 0;
-  font-size: 16px;
-  color: var(--text-color);
+  font-size: 1.2rem;
+  font-weight: bold;
 }
 
-.playPauseBtn {
-  padding: 5px 10px;
-  font-size: 14px;
-  background-color: var(--accent-color);
-  color: var(--text-color);
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-.playPauseBtn:hover {
-  background-color: var(--text-color);
-  color: var(--accent-color);
-}
-
-
-.search-bar{
-  margin-bottom: 20px;
-}
-
-/* Button Styling */
 button {
-  background-color: var(--button-color);
-  color: var(--button-text-color);
+  background-color: #0074d9;
+  color: white;
   border: none;
   padding: 10px 20px;
-  font-size: 16px;
+  font-size: 1rem;
+  border-radius: 5px;
   cursor: pointer;
-  transition: background-color 0.3s, color 0.3s;
+  transition: background-color 0.3s, transform 0.3s;
 }
 
 button:hover {
-  background-color: #002a80;
-  transform: scale(1.05);
-  opacity: 0.8;
+  background-color: #ffdc00;
+  transform: scale(1.1);
 }
 
 button:active {
-  transform: scale(0.95);
+  background-color: #ff4136;
+  transform: scale(1);
 }
 
-.search-bar input{
+.theme-selector {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin: 20px auto;
+}
+
+.theme-selector button {
+  background-color: #2ecc40;
+  border: 2px solid #001f3f;
+  color: white;
+  font-weight: bold;
+}
+
+.theme-selector button.dark-mode {
+  background-color: #001f3f;
+  color: #2ecc40;
+}
+
+.audio-player {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  margin: 20px auto;
   padding: 10px;
-  width: 80%;
-  font-size: 1em;
+  background-color: rgba(0, 0, 0, 0.6);
+  border-radius: 10px;
+  max-width: 400px;
 }
 
-footer{
-  margin-top: 20px;
-  font-size: 0.9em;
-  opacity: 0.8;
+.audio-player button {
+  padding: 10px;
+  border-radius: 50%;
+  background-color: #ff851b;
+  border: none;
+  color: white;
+  font-size: 1.2rem;
+  transition: background-color 0.3s;
 }
 
-/* Responsive Design */
-@media (max-width: 600px) {
-  h1 {
-    font-size: 2em;
+.audio-player button:hover {
+  background-color: #ffdc00;
+}
+
+@media (max-width: 768px) {
+  #trackList {
+    max-width: 100%;
+    padding: 10px;
   }
 
-  #songList li {
-    font-size: 0.9em;
+  .track {
+    flex-direction: column;
+    text-align: center;
   }
 
   button {
-    font-size: 0.9em;
-    padding: 8px 12px;
+    font-size: 0.9rem;
   }
 }
-

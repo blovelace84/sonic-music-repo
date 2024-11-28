@@ -92,3 +92,38 @@ function crossfadeTracks(outgoingAudio, incomingAudio) {
     }
   }, 50);
 }
+
+// Select the button and the body
+const themeToggleButton = document.getElementById('themeToggle');
+const body = document.body;
+
+// Function to toggle themes
+themeToggleButton.addEventListener('click', () => {
+  // Toggle a class on the body
+  body.classList.toggle('dark-theme');
+
+  // Change button text based on the current theme
+  if (body.classList.contains('dark-theme')) {
+    themeToggleButton.textContent = 'Dark Mode';
+  } else {
+    themeToggleButton.textContent = 'Light Mode';
+  }
+});
+
+const themes = ['green-hill', 'chemical-plant', 'sky-sanctuary'];
+let currentThemeIndex = 0;
+
+themeToggleButton.addEventListener('click', () => {
+  // Remove the current theme
+  body.classList.remove(themes[currentThemeIndex]);
+
+  // Increment the index and loop back if necessary
+  currentThemeIndex = (currentThemeIndex + 1) % themes.length;
+
+  // Apply the new theme
+  body.classList.add(themes[currentThemeIndex]);
+
+  // Update button text
+  themeToggleButton.textContent = `${themes[currentThemeIndex].replace('-', ' ')} Mode`;
+});
+

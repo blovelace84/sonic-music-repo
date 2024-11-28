@@ -102,26 +102,45 @@ h1{
   margin-top: 20px;
 }
 
-.song-list{
-  list-style: none;
-  padding: 0;
-  background-color: dodgerblue;
-  margin: 20px auto;
-  max-width: 600px;
+#trackList {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin: 20px;
 }
 
-.song-list li{
-  background-color: rgba(255, 255, 255, 0.1);
-  margin: 5px 0;
-  padding: 10px 15px;
-  transition: background-color 0.3s ease;
+.track {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: var(--background-color);
+  padding: 10px;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.track p {
+  margin: 0;
+  font-size: 16px;
+  color: var(--text-color);
+}
+
+.playPauseBtn {
+  padding: 5px 10px;
+  font-size: 14px;
+  background-color: var(--accent-color);
+  color: var(--text-color);
+  border: none;
+  border-radius: 5px;
   cursor: pointer;
+  transition: background-color 0.3s ease;
 }
 
-.song-list li:hover{
-  background-color: rgba(255, 255, 255, 0.3);
-  text-decoration: underline;
+.playPauseBtn:hover {
+  background-color: var(--text-color);
+  color: var(--accent-color);
 }
+
 
 .search-bar{
   margin-bottom: 20px;

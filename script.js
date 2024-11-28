@@ -1,12 +1,15 @@
 const trackList = document.getElementById("trackList");
-let currentAudio = null;
-let crossfadeInterval = null; // To manage active intervals
-let crossfadeDuration = 2; // Crossfade duration in seconds
+let currentAudio = null; // Currently playing audio
+let currentIndex = -1; // Index of the currently playing track
+let crossfadeInterval = null;
+const crossfadeDuration = 2; // Duration of crossfade in seconds
+let songs = []; // Will hold the loaded songs
 
 // Fetch and render tracks
 fetch("songs.json")
   .then((response) => response.json())
-  .then((songs) => {
+  .then((data) => {
+    songs = data; // Store songs for navigation
     songs.forEach((song, index) => {
       // Create a container for each track
       const trackDiv = document.createElement("div");
@@ -23,29 +26,9 @@ fetch("songs.json")
       playPauseBtn.classList.add("playPauseBtn");
       trackDiv.appendChild(playPauseBtn);
 
-      // Create an audio element for this track
-      const audio = new Audio(song.url);
-
-      // Add play/pause functionality with crossfade
+      // Add event listener for play/pause
       playPauseBtn.addEventListener("click", () => {
-        if (currentAudio && currentAudio !== audio) {
-          // Perform crossfade if switching tracks
-          crossfadeTracks(currentAudio, audio);
-        } else if (audio.paused) {
-          // Play this track
-          audio.play();
-          playPauseBtn.textContent = "Pause";
-          currentAudio = audio;
-        } else {
-          // Pause this track
-          audio.pause();
-          playPauseBtn.textContent = "Play";
-        }
-      });
-
-      // Update button state on audio end
-      audio.addEventListener("ended", () => {
-        playPauseBtn.textContent = "Play";
+        playTrack(index);
       });
 
       // Append the track to the list
@@ -54,33 +37,58 @@ fetch("songs.json")
   })
   .catch((error) => console.error("Error loading songs:", error));
 
+// Function to play a track
+function playTrack(index) {
+  if (index < 0 || index >= songs.length) return; // Ensure valid index
+
+  const song = songs[index];
+  const audio = new Audio(song.url);
+
+  if (currentAudio) {
+    // Crossfade to the new track
+    crossfadeTracks(currentAudio, audio);
+  } else {
+    // Play the new track directly
+    audio.play();
+    currentAudio = audio;
+    currentIndex = index;
+    setupTrackEndListener();
+  }
+}
+
+// Setup listener to auto-crossfade to the next track
+function setupTrackEndListener() {
+  currentAudio.addEventListener("ended", () => {
+    const nextIndex = (currentIndex + 1) % songs.length; // Loop to the first track
+    const nextSong = new Audio(songs[nextIndex].url);
+    crossfadeTracks(currentAudio, nextSong);
+    currentIndex = nextIndex;
+  });
+}
+
 // Crossfade function
 function crossfadeTracks(outgoingAudio, incomingAudio) {
   let outgoingVolume = 1;
   let incomingVolume = 0;
 
-  // Stop any active intervals
   if (crossfadeInterval) clearInterval(crossfadeInterval);
 
-  // Set the incoming audio volume to 0 and start playing
-  incomingAudio.volume = 0;
+  incomingAudio.volume = 0; // Start with zero volume
   incomingAudio.play();
 
-  // Crossfade interval
   crossfadeInterval = setInterval(() => {
-    // Decrease outgoing audio volume
     outgoingVolume -= 0.05 / crossfadeDuration;
     incomingVolume += 0.05 / crossfadeDuration;
 
-    outgoingAudio.volume = Math.max(0, outgoingVolume); // Ensure no negative volume
-    incomingAudio.volume = Math.min(1, incomingVolume); // Cap at full volume
+    outgoingAudio.volume = Math.max(0, outgoingVolume);
+    incomingAudio.volume = Math.min(1, incomingVolume);
 
-    // End the crossfade
     if (outgoingVolume <= 0 && incomingVolume >= 1) {
       clearInterval(crossfadeInterval);
       outgoingAudio.pause();
-      outgoingAudio.volume = 1; // Reset for future playback
-      currentAudio = incomingAudio; // Set the new track as current
+      outgoingAudio.volume = 1;
+      currentAudio = incomingAudio;
+      setupTrackEndListener(); // Set up next song to play
     }
-  }, 50); // Adjust volume every 50ms for a smooth fade
+  }, 50);
 }

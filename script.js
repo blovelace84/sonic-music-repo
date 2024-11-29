@@ -95,3 +95,32 @@ function searchSongs() {
   );
   displaySongs(filteredsongs);
 }
+
+const themeSelector = document.getElementById('theme-selector');
+
+themeSelector.addEventListener('change', (event) => {
+  const selectedTheme = event.target.value;
+
+  // Remove all theme classes
+  document.body.classList.remove('theme-green-hill', 'theme-chemical-plant', 'theme-sky-sanctuary');
+
+  // Apply the selected theme
+  switch (selectedTheme) {
+    case 'green-hill':
+      document.body.classList.add('theme-green-hill');
+      break;
+    case 'chemical-plant':
+      document.body.classList.add('theme-chemical-plant');
+      console.log('Chemical Plant theme applied');
+      break;
+    case 'sky-sanctuary':
+      document.body.classList.add('theme-sky-sanctuary');
+      break;
+    case 'default':
+    default:
+      // No additional classes; this falls back to the default styling
+      break;
+  }
+
+  console.log('Current body classes:', document.body.className);
+});

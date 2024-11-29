@@ -3,13 +3,38 @@ body{
   background: deepskyblue;
   color: #333;
   text-align: center;
+  
+} 
+
+
+
+/*Theme toggle option*/
+.theme-green-hill{
+  background: url("image/green-hill-zone.png") no-repeat center center fixed;
+  background-size: cover;
+  color:#0056b3;
+  transition: background 0.5s ease, color 0.5s ease;
+}
+
+.theme-chemical-plant{
+  background: url('image/chemical-plant.jpg') no-repeat center center fixed;
+  background-size: cover;
+  color: #0056b3;
+  transition: background 0.5s ease, color 0.5s ease;
+}
+
+.theme-sky-sanctuary{
+  background: url("image/sky sanctuary.jpg") no-repeat center center fixed;
+  background-size: cover;
+  color:#0056b3;
+  transition: background 0.5s ease, color 0.5s ease;
 }
 
 header h1{
   font-size:  2rem;
   margin: 20px 0;
 }
-
+/*For the search button*/
 #search-section{
   margin-bottom: 20px;
 }
@@ -35,7 +60,7 @@ header h1{
 #search-btn:hover{
   background-color: lawngreen;
 }
-
+/*For the songs container and song item*/
 #songs-container{
   display: flex;
   flex-direction: column;
@@ -65,32 +90,4 @@ header h1{
 
 .song-item button:hover{
   background: #0056b3;
-}
-
-.search-container{
-  display: flex;
-  align-items: center;
-  margin: 20px;
-}
-
-#search-bar{
-  padding: 10px;
-  font-size: 16px;
-  width: 200px;
-  border: 1px solid darkblue;
-  border-radius: 4px;
-}
-
-button{
-  padding: 10px 15px;
-  font-size: 16px;
-  background-color: mediumblue;
-  color: white;
-  border: navajowhite;
-  border-radius: 4px;
-  cursor: pointer;
-}
-
-button:hover{
-  background-color: #45a049;
 }

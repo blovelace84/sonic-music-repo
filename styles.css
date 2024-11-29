@@ -1,251 +1,70 @@
 body{
-  margin: 0;
   font-family: Arial, Helvetica, sans-serif;
-  background-image: url('image/green-hill-zone.png');
-  background-size: cover;
-  background-attachment: fixed;
-  background-position: center;
-  color: white;
-  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
+  background: deepskyblue;
+  color: #333;
+  text-align: center;
 }
 
-#mainHeader{
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 10px 20px;
-  background: linear-gradient(to right, #0074d9, #ffdc00);
-  color: white;
-  font-family: 'Changa One', sans-serif;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
-  position: sticky;
-  top: 0;
-  z-index: 1000;
+header h1{
+  font-size:  2rem;
+  margin: 20px 0;
 }
 
-#mainHeader h1{
-  margin: 0;
-  font-size: 2rem;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
-}
-
-.logo img{
-  height: 50px;
-  width: auto;
-}
-
-.nav-links{
-  display: flex;
-  gap: 15px;
-}
-
-.theme-toggle{
-  background-color: #ff4136;
-  color: white;
-  border: none;
-  padding: 10px 15px;
-  border-radius: 5px;
-  font-size: 1rem;
-  cursor: pointer;
-  transition: background-color 0.3s, transform 0.3s;
-}
-
-.theme-toggle:hover{
-  background-color: #ff851b;
-  transform: scale(1.1);
-}
-
-#mainHeader:hover{
-  background: linear-gradient(to right, #ffdc00, #0074d9);
-}
-
-@media (max-width: 768px) {
-  #mainHeader {
-    flex-direction: column;
-    text-align: center;
-  }
-
-  #mainHeader h1 {
-    font-size: 1.5rem;
-  }
-
-  .nav-links {
-    flex-direction: column;
-    gap: 10px;
-  }
-
-  .logo img {
-    height: 40px;
-  }
-}
-
-body.green-hill {
-  background-image: url('image/green-hill-zone.png');
-  background-size: cover;
-}
-
-body.chemical-plant {
-  background-image: url('image/chemical plant.jpg');
-  background-size: cover;
-}
-
-body.sky-sanctuary {
-  background-image: url('image/sky sanctuary.jpg');
-  background-size: cover;
-}
-
-#search-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 20px;
-  gap: 10px; /* Adds space between the input and button */
-}
-
-#searchInput {
-  width: 300px;
-  padding: 10px;
-  font-size: 1rem;
-  border: 2px solid #0074D9; /* Matches your theme */
-  border-radius: 5px;
-  outline: none;
-  transition: border-color 0.3s ease;
-}
-
-#searchInput:focus {
-  border-color: #FF4136; /* Focus effect */
-}
-
-#searchButton {
-  padding: 10px 20px;
-  font-size: 1rem;
-  color: white;
-  background-color: #0074D9;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.3s ease;
-}
-
-#searchButton:hover {
-  background-color: #FF4136; /* Hover effect */
-  transform: scale(1.1); /* Slightly enlarges the button */
-}
-
-#searchButton:active {
-  transform: scale(0.95); /* Shrinks slightly on click */
-}
-
-
-#trackList {
+#songs-container{
   display: flex;
   flex-direction: column;
-  gap: 15px;
-  padding: 20px;
-  margin: auto;
-  max-width: 600px;
+  align-items: center;
+  gap: 10px;
 }
 
-.track {
-  background-color: rgba(0, 0, 0, 0.8);
-  padding: 15px;
-  border-radius: 10px;
+.song-item{
   display: flex;
   align-items: center;
   justify-content: space-between;
-  transition: transform 0.3s, background-color 0.3s;
+  width: 80%;
+  padding: 10px;
+  border: 1px solid darkblue;
+  border-radius: 5px;
+  background: #fff;
 }
 
-.track:hover {
-  transform: scale(1.05);
-  background-color: rgba(0, 128, 255, 0.8);
-}
-
-.track p {
-  margin: 0;
-  font-size: 1.2rem;
-  font-weight: bold;
-}
-
-button {
-  background-color: #0074d9;
+.song-item button{
+  padding: 5px 10px;
+  background: #007bff;
   color: white;
   border: none;
-  padding: 10px 20px;
-  font-size: 1rem;
   border-radius: 5px;
   cursor: pointer;
-  transition: background-color 0.3s, transform 0.3s;
 }
 
-button:hover {
-  background-color: #ffdc00;
-  transform: scale(1.1);
+.song-item button:hover{
+  background: #0056b3;
 }
 
-button:active {
-  background-color: #ff4136;
-  transform: scale(1);
-}
-
-.theme-selector {
+.search-container{
   display: flex;
-  justify-content: center;
   align-items: center;
-  gap: 10px;
-  margin: 20px auto;
+  margin: 20px;
 }
 
-.theme-selector button {
-  background-color: #2ecc40;
-  border: 2px solid #001f3f;
-  color: white;
-  font-weight: bold;
-}
-
-.theme-selector button.dark-mode {
-  background-color: #001f3f;
-  color: #2ecc40;
-}
-
-.audio-player {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 15px;
-  margin: 20px auto;
+#search-bar{
   padding: 10px;
-  background-color: rgba(0, 0, 0, 0.6);
-  border-radius: 10px;
-  max-width: 400px;
+  font-size: 16px;
+  width: 200px;
+  border: 1px solid darkblue;
+  border-radius: 4px;
 }
 
-.audio-player button {
-  padding: 10px;
-  border-radius: 50%;
-  background-color: #ff851b;
-  border: none;
+button{
+  padding: 10px 15px;
+  font-size: 16px;
+  background-color: mediumblue;
   color: white;
-  font-size: 1.2rem;
-  transition: background-color 0.3s;
+  border: navajowhite;
+  border-radius: 4px;
+  cursor: pointer;
 }
 
-.audio-player button:hover {
-  background-color: #ffdc00;
-}
-
-@media (max-width: 768px) {
-  #trackList {
-    max-width: 100%;
-    padding: 10px;
-  }
-
-  .track {
-    flex-direction: column;
-    text-align: center;
-  }
-
-  button {
-    font-size: 0.9rem;
-  }
+button:hover{
+  background-color: #45a049;
 }

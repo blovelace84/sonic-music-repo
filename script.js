@@ -1,129 +1,91 @@
-const trackList = document.getElementById("trackList");
-let currentAudio = null; // Currently playing audio
-let currentIndex = -1; // Index of the currently playing track
-let crossfadeInterval = null;
-const crossfadeDuration = 2; // Duration of crossfade in seconds
-let songs = []; // Will hold the loaded songs
+let songs = [];
+let currentAudio = null;
+let currentIndex = -1; // Index of the currently playing song
+const crossfadeDuration = 2000; // Crossfade duration in milliseconds
+const fadeInterval = 50; // Interval for volume adjustment
 
-// Fetch and render tracks
-fetch("songs.json")
-  .then((response) => response.json())
-  .then((data) => {
-    songs = data; // Store songs for navigation
-    songs.forEach((song, index) => {
-      // Create a container for each track
-      const trackDiv = document.createElement("div");
-      trackDiv.classList.add("track");
-
-      // Add song title
-      const title = document.createElement("p");
-      title.textContent = song.title;
-      trackDiv.appendChild(title);
-
-      // Add play/pause button
-      const playPauseBtn = document.createElement("button");
-      playPauseBtn.textContent = "Play";
-      playPauseBtn.classList.add("playPauseBtn");
-      trackDiv.appendChild(playPauseBtn);
-
-      // Add event listener for play/pause
-      playPauseBtn.addEventListener("click", () => {
-        playTrack(index);
-      });
-
-      // Append the track to the list
-      trackList.appendChild(trackDiv);
-    });
+// Fetch songs from songs.json
+fetch('songs.json')
+  .then(response => response.json())
+  .then(data => {
+    songs = data;
+    displaySongs(songs);
   })
-  .catch((error) => console.error("Error loading songs:", error));
+  .catch(error => console.error('Error loading songs:', error));
 
-// Function to play a track
-function playTrack(index) {
-  if (index < 0 || index >= songs.length) return; // Ensure valid index
+// Display songs in the HTML
+function displaySongs(songs) {
+  const container = document.getElementById('songs-container');
+  container.innerHTML = ''; // Clear previous content
 
-  const song = songs[index];
-  const audio = new Audio(song.url);
+  songs.forEach((song, index) => {
+    const songItem = document.createElement('div');
+    songItem.className = 'song-item';
 
-  if (currentAudio) {
-    // Crossfade to the new track
-    crossfadeTracks(currentAudio, audio);
-  } else {
-    // Play the new track directly
-    audio.play();
-    currentAudio = audio;
-    currentIndex = index;
-    setupTrackEndListener();
-  }
-}
+    const title = document.createElement('span');
+    title.textContent = song.title;
 
-// Setup listener to auto-crossfade to the next track
-function setupTrackEndListener() {
-  currentAudio.addEventListener("ended", () => {
-    const nextIndex = (currentIndex + 1) % songs.length; // Loop to the first track
-    const nextSong = new Audio(songs[nextIndex].url);
-    crossfadeTracks(currentAudio, nextSong);
-    currentIndex = nextIndex;
+    const playButton = document.createElement('button');
+    playButton.textContent = 'Play';
+    playButton.addEventListener('click', () => playSong(index));
+
+    songItem.appendChild(title);
+    songItem.appendChild(playButton);
+    container.appendChild(songItem);
   });
 }
 
-// Crossfade function
-function crossfadeTracks(outgoingAudio, incomingAudio) {
-  let outgoingVolume = 1;
-  let incomingVolume = 0;
+// Play a song with crossfade
+function playSong(index) {
+  if (currentAudio) {
+    fadeOut(currentAudio, crossfadeDuration);
+  }
 
-  if (crossfadeInterval) clearInterval(crossfadeInterval);
+  const nextSong = songs[index];
+  const nextAudio = new Audio(nextSong.file);
+  nextAudio.volume = 0; // Start muted
 
-  incomingAudio.volume = 0; // Start with zero volume
-  incomingAudio.play();
+  nextAudio.play()
+    .then(() => {
+      fadeIn(nextAudio, crossfadeDuration);
+      currentAudio = nextAudio;
+      currentIndex = index;
 
-  crossfadeInterval = setInterval(() => {
-    outgoingVolume -= 0.05 / crossfadeDuration;
-    incomingVolume += 0.05 / crossfadeDuration;
-
-    outgoingAudio.volume = Math.max(0, outgoingVolume);
-    incomingAudio.volume = Math.min(1, incomingVolume);
-
-    if (outgoingVolume <= 0 && incomingVolume >= 1) {
-      clearInterval(crossfadeInterval);
-      outgoingAudio.pause();
-      outgoingAudio.volume = 1;
-      currentAudio = incomingAudio;
-      setupTrackEndListener(); // Set up next song to play
-    }
-  }, 50);
+      // Automatically crossfade to the next song when this one ends
+      currentAudio.addEventListener('ended', () => {
+        const nextIndex = (currentIndex + 1) % songs.length;
+        playSong(nextIndex);
+      });
+    })
+    .catch(error => console.error('Error playing song:', error));
 }
 
-// Select the button and the body
-const themeToggleButton = document.getElementById('themeToggle');
-const body = document.body;
+// Fade out the current audio
+function fadeOut(audio, duration) {
+  const step = audio.volume / (duration / fadeInterval);
+  const fadeOutInterval = setInterval(() => {
+    if (audio.volume > 0) {
+      audio.volume = Math.max(0, audio.volume - step);
+    } else {
+      clearInterval(fadeOutInterval);
+      audio.pause();
+    }
+  }, fadeInterval);
+}
 
-// Function to toggle themes
-themeToggleButton.addEventListener('click', () => {
-  // Toggle a class on the body
-  body.classList.toggle('dark-theme');
+// Fade in the new audio
+function fadeIn(audio, duration) {
+  const step = 1 / (duration / fadeInterval);
+  const fadeInInterval = setInterval(() => {
+    if (audio.volume < 1) {
+      audio.volume = Math.min(1, audio.volume + step);
+    } else {
+      clearInterval(fadeInInterval);
+    }
+  }, fadeInterval);
+}
 
-  // Change button text based on the current theme
-  if (body.classList.contains('dark-theme')) {
-    themeToggleButton.textContent = 'Dark Mode';
-  } else {
-    themeToggleButton.textContent = 'Light Mode';
-  }
-});
-
-const themes = ['green-hill', 'chemical-plant', 'sky-sanctuary'];
-let currentThemeIndex = 0;
-
-themeToggleButton.addEventListener('click', () => {
-  // Remove the current theme
-  body.classList.remove(themes[currentThemeIndex]);
-
-  // Increment the index and loop back if necessary
-  currentThemeIndex = (currentThemeIndex + 1) % themes.length;
-
-  // Apply the new theme
-  body.classList.add(themes[currentThemeIndex]);
-
-  // Update button text
-  themeToggleButton.textContent = `${themes[currentThemeIndex].replace('-', ' ')} Mode`;
-});
-
+function searchFunction() {
+  const query = document.getElementById("search-bar").value.toLowerCase();
+  alert("Search for:" + query);
+}

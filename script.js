@@ -14,11 +14,11 @@ fetch('songs.json')
   .catch(error => console.error('Error loading songs:', error));
 
 // Display songs in the HTML
-function displaySongs(songs) {
+function displaySongs(filteredsongs) {
   const container = document.getElementById('songs-container');
   container.innerHTML = ''; // Clear previous content
 
-  songs.forEach((song, index) => {
+  filteredsongs.forEach((song, index) => {
     const songItem = document.createElement('div');
     songItem.className = 'song-item';
 
@@ -85,7 +85,13 @@ function fadeIn(audio, duration) {
   }, fadeInterval);
 }
 
-function searchFunction() {
-  const query = document.getElementById("search-bar").value.toLowerCase();
-  alert("Search for:" + query);
+const searchBtn = document.getElementById("search-btn");
+searchBtn.addEventListener('click', searchSongs);
+
+function searchSongs() {
+  const searchInput = document.getElementById('search-input').value.toLowerCase();
+  const filteredsongs = songs.filter(song => 
+    song.title.toLowerCase().includes(searchInput)
+  );
+  displaySongs(filteredsongs);
 }

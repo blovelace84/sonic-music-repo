@@ -10,6 +10,32 @@ header h1{
   margin: 20px 0;
 }
 
+#search-section{
+  margin-bottom: 20px;
+}
+
+#search-input{
+  padding: 10px;
+  width: 60%;
+  max-width: 400px;
+  margin-right: 10px;
+  border-radius: 5px;
+  border: 1px solid darkblue;
+}
+
+#search-btn{
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+#search-btn:hover{
+  background-color: lawngreen;
+}
+
 #songs-container{
   display: flex;
   flex-direction: column;

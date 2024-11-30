@@ -1,7 +1,7 @@
 body{
   font-family: Arial, Helvetica, sans-serif;
   background: deepskyblue;
-  color: darkblue;
+  color: white;
   text-align: center;
 } 
 
@@ -9,7 +9,7 @@ body{
 .theme-green-hill{
   background: url("image/green-hill-zone.png") no-repeat center center fixed;
   background-size: cover;
-  color:#0056b3;
+  color: white;
   transition: background 0.5s ease, color 0.5s ease;
 }
 
@@ -24,20 +24,22 @@ body{
 .theme-chemical-plant{
   background: url('image/chemical-plant.jpg') no-repeat center center fixed;
   background-size: cover;
-  color: #0056b3;
+  color: white;
   transition: background 0.5s ease, color 0.5s ease;
 }
 
 .theme-sky-sanctuary{
   background: url("image/sky sanctuary.jpg") no-repeat center center fixed;
   background-size: cover;
-  color:#0056b3;
+  color: white;
   transition: background 0.5s ease, color 0.5s ease;
 }
 
 header h1{
   font-size:  2rem;
   margin: 20px 0;
+  padding: 10px 20px;
+  background-color: royalblue;
 }
 /*For the search button*/
 #search-section{

@@ -4,6 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const songContainer = document.getElementById('song-container'); // Div to display songs
   let songs = []; // Placeholder for songs fetched from JSON
 
+
   // Fetch songs from the JSON file
   const loadSongs = async () => {
     try {
@@ -77,8 +78,9 @@ document.addEventListener('DOMContentLoaded', () => {
   loadSongs();
 });
 
-
+let selectedTheme = 'default'; //Default theme or initial value
 document.getElementById('theme-toggle').addEventListener('change', (event) => {
+
   const selectedTheme = event.target.value;
 
   //remove all theme classes from the body
@@ -99,3 +101,11 @@ document.getElementById('theme-toggle').addEventListener('change', (event) => {
     document.body.classList.add('default-theme');
   }
 });
+
+// Save the selected theme
+localStorage.setItem('theme', selectedTheme);
+
+// On page load, apply the saved theme
+const savedTheme = localStorage.getItem('theme') || 'default';
+document.body.classList.add(`${savedTheme}-theme`);
+document.getElementById('theme-toggle').value = savedTheme;

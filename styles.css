@@ -120,3 +120,38 @@ body.sky-sanctuary-theme {
   padding: 5px;
   font-size: 16px;
 }
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+  /* Adjust container padding */
+  .container {
+    padding: 10px;
+  }
+
+  /* Stack theme selector */
+  .theme-selector {
+    position: static;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+
+  /* Song items: full width */
+  .song-item {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  /* Smaller text sizes */
+  .song-item h3 {
+    font-size: 0.9rem;
+  }
+
+  .song-item p {
+    font-size: 0.8rem;
+  }
+
+  button {
+    font-size: 0.9rem;
+    padding: 8px 10px;
+  }
+}

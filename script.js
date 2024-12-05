@@ -76,3 +76,26 @@ document.addEventListener('DOMContentLoaded', () => {
   // Load songs on page load
   loadSongs();
 });
+
+
+document.getElementById('theme-toggle').addEventListener('change', (event) => {
+  const selectedTheme = event.target.value;
+
+  //remove all theme classes from the body
+  document.body.classList.remove(
+    'default-theme',
+    'green-hill-theme',
+    'chemical-plant-theme',
+    'sky-sanctuary-theme' 
+  );
+  //Apply selected theme class
+  if(selectedTheme === 'green-hill'){
+    document.body.classList.add('green-hill-theme');
+  }else if(selectedTheme === 'chemical-plant'){
+    document.body.classList.add('chemical-plant-theme');
+  }else if(selectedTheme === 'sky-sanctuary'){
+    document.body.classList.add('sky-sanctuary-theme');
+  }else{
+    document.body.classList.add('default-theme');
+  }
+});

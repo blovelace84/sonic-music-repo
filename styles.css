@@ -69,7 +69,6 @@ header h1{
   color: gray; /* Optional: Differentiate the artist text with a subtle color */
 }
 
-
 .song-item button{
   padding: 5px 10px;
   margin: 10px 15px;
@@ -82,4 +81,42 @@ header h1{
 
 .song-item:hover{
   background-color: red;
+}
+
+body.default-theme {
+  background-color: blue;
+  color: black;
+}
+
+body.green-hill-theme {
+  background-image: url('image/green-hill-zone.png'); /* Replace with your image path */
+  background-size: cover;
+  color: white;
+}
+
+body.chemical-plant-theme {
+  background-image: url('image/chemical-plant.jpg'); /* Replace with your image path */
+  background-size: cover;
+  color: white;
+}
+
+body.sky-sanctuary-theme {
+  background-image: url('image/sky sanctuary.jpg'); /* Replace with your image path */
+  background-size: cover;
+  color: black;
+}
+
+/* Optional: Style the theme selector */
+.theme-selector {
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  background: rgba(255, 255, 255, 0.8);
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.theme-selector select {
+  padding: 5px;
+  font-size: 16px;
 }

@@ -8,25 +8,24 @@
   <link href="https://fonts.googleapis.com/css2?family=Changa+One&display=swap" rel="stylesheet">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
 </head>
-<body>
+<body class="default-theme">
   <header id="mainHeader">
     <div class="logo">
       <img src="image/sonic the hedgehog.jpg" alt="Sonic the Hedgehog">
     </div>
     <h1>Sonic Sound Oasis</h1>
-    <select name="" id="theme-selector">
-      <option value="default" selected>Default Theme</option>
-      <option value="green-hill">Green Hill</option>
-      <option value="chemical-plant">Chemical Plant</option>
-      <option value="sky-sanctuary">Sky Sanctuary</option>
-    </select>
+    <div id="search-container">
+      <input type="text" 
+      id="search-bar" 
+      placeholder="Search for a song" 
+      aria-label="Search for a song"
+      >
+      <button id="search-button">Search</button>
+    </div>
   </header>
-  <section id="search-section">
-    <input type="text" id="search-input" placeholder="Search for a song...">
-    <button id="search-btn">Search</button>
-  </section>
   <main>
-    <section id="songs-container"></section>
+    <div id="song-container"></div>
+    <audio id="audio-player" constrols style="display: none;"></audio>
   </main>
   <script src="script.js"></script>
   <footer>

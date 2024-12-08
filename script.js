@@ -1,111 +1,93 @@
 document.addEventListener('DOMContentLoaded', () => {
-  const searchBar = document.getElementById('search-bar');
-  const searchButton = document.getElementById('search-button');
-  const songContainer = document.getElementById('song-container'); // Div to display songs
-  let songs = []; // Placeholder for songs fetched from JSON
-
+  const songsContainer = document.getElementById('songs-container');
+  let currentAudio = null; // Keeps track of the currently playing audio
 
   // Fetch songs from the JSON file
-  const loadSongs = async () => {
-    try {
-      const response = await fetch('songs.json'); // Path to your JSON file
+  fetch('songs.json')
+    .then(response => {
       if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
+        throw new Error('Failed to fetch songs');
       }
-      songs = await response.json(); // Assign the parsed JSON data to songs
-      displaySongs(songs); // Initially display all songs
-    } catch (error) {
-      console.error("Error loading songs:", error);
-      songContainer.innerHTML = `<p>Error loading songs. Please try again later.</p>`;
-    }
-  };
+      return response.json();
+    })
+    .then(songs => {
+      // Clear existing content
+      songsContainer.innerHTML = '';
 
-  // Function to display songs
-  const displaySongs = (songList) => {
-    songContainer.innerHTML = ""; // Clear current list
-    if (songList.length === 0) {
-      songContainer.innerHTML = `<p>No songs found.</p>`;
-      return;
-    }
-    songList.forEach((song) => {
-      const songItem = document.createElement("div");
-      songItem.className = "song-item";
-      songItem.innerHTML = `
-        <h3>${song.title}</h3>
-        <p>${song.artist}</p>
-        <button class="play-button" data-src="${song.file}">Play</button>
-      `;
-      songContainer.appendChild(songItem);
-    });
+      // Loop through songs and create HTML elements for each
+      songs.forEach(song => {
+        const songElement = document.createElement('div');
+        songElement.classList.add('song');
 
-    // Add event listeners to play buttons
-    const playButtons = document.querySelectorAll('.play-button');
-    playButtons.forEach((button) => {
-      button.addEventListener('click', (event) => {
-        const audioSource = event.target.getAttribute('data-src');
-        playSong(audioSource);
+        // Add content to the song element
+        songElement.innerHTML = `
+          <p><strong>${song.title}</strong> - ${song.artist}</p>
+          <button class="play-btn" data-file="${song.file}">Play</button>
+          <button class="pause-btn" data-file="${song.file}" disabled>Pause</button>
+        `;
+
+        // Append the song element to the container
+        songsContainer.appendChild(songElement);
       });
+
+      // Add play functionality to each Play button
+      document.querySelectorAll('.play-btn').forEach(button => {
+        button.addEventListener('click', () => {
+          const audioFile = button.getAttribute('data-file');
+          playSong(audioFile, button);
+        });
+      });
+
+      // Add pause functionality to each Pause button
+      document.querySelectorAll('.pause-btn').forEach(button => {
+        button.addEventListener('click', () => {
+          pauseSong(button);
+        });
+      });
+    })
+    .catch(error => {
+      console.error('Error loading songs:', error);
+      songsContainer.innerHTML = '<p>Failed to load songs. Please try again later.</p>';
     });
-  };
 
-  // Search function
-  const searchSongs = () => {
-    const query = searchBar.value.toLowerCase();
-    const filteredSongs = songs.filter((song) =>
-      song.title.toLowerCase().includes(query)
-    );
-    displaySongs(filteredSongs);
-  };
-
-  // Play song function
-  const playSong = (src) => {
-    const audioPlayer = document.getElementById('audio-player'); // Assume you have an audio player in your HTML
-    audioPlayer.src = src;
-    audioPlayer.play().catch((error) => {
-      console.error("Error playing song:", error);
-    });
-  };
-
-  // Event listeners
-  searchButton.addEventListener("click", searchSongs);
-  searchBar.addEventListener("keypress", (event) => {
-    if (event.key === "Enter") {
-      searchSongs();
+  // Function to play a song
+  function playSong(file, playButton) {
+    // Stop the currently playing audio if it exists
+    if (currentAudio) {
+      currentAudio.pause();
+      currentAudio.currentTime = 0; // Reset playback position
     }
-  });
 
-  // Load songs on page load
-  loadSongs();
-});
+    // Enable the Pause button and disable the Play button
+    const pauseButton = playButton.nextElementSibling;
+    playButton.disabled = true;
+    pauseButton.disabled = false;
 
-let selectedTheme = 'default'; //Default theme or initial value
-document.getElementById('theme-toggle').addEventListener('change', (event) => {
+    // Create a new audio instance for the selected song
+    currentAudio = new Audio(file);
+    currentAudio.play();
 
-  const selectedTheme = event.target.value;
+    // Log an error if the audio can't be played
+    currentAudio.addEventListener('error', () => {
+      console.error('Error playing song:', file);
+    });
 
-  //remove all theme classes from the body
-  document.body.classList.remove(
-    'default-theme',
-    'green-hill-theme',
-    'chemical-plant-theme',
-    'sky-sanctuary-theme' 
-  );
-  //Apply selected theme class
-  if(selectedTheme === 'green-hill'){
-    document.body.classList.add('green-hill-theme');
-  }else if(selectedTheme === 'chemical-plant'){
-    document.body.classList.add('chemical-plant-theme');
-  }else if(selectedTheme === 'sky-sanctuary'){
-    document.body.classList.add('sky-sanctuary-theme');
-  }else{
-    document.body.classList.add('default-theme');
+    // Re-enable Play button when the song ends
+    currentAudio.addEventListener('ended', () => {
+      playButton.disabled = false;
+      pauseButton.disabled = true;
+    });
+  }
+
+  // Function to pause the current song
+  function pauseSong(pauseButton) {
+    if (currentAudio) {
+      currentAudio.pause();
+    }
+
+    // Re-enable the Play button and disable the Pause button
+    const playButton = pauseButton.previousElementSibling;
+    playButton.disabled = false;
+    pauseButton.disabled = true;
   }
 });
-
-// Save the selected theme
-localStorage.setItem('theme', selectedTheme);
-
-// On page load, apply the saved theme
-const savedTheme = localStorage.getItem('theme') || 'default';
-document.body.classList.add(`${savedTheme}-theme`);
-document.getElementById('theme-toggle').value = savedTheme;

@@ -17,6 +17,36 @@ header{
   z-index: 1000;
 }
 
+#search-container{
+  display: flex;
+  justify-content: center;
+  margin: 20px auto;
+  gap: 10px;
+}
+
+#search-bar{
+  width: 300px;
+  padding: 10px;
+  font-size: 16px;
+  border: 2px solid #0f4c81;
+  border-radius: 5px;
+}
+
+#search-button{
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #0f4c81;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+#search-button:hover{
+  background-color: #085d9b;
+}
+
 header h1{
   font-size: 24px;
   font-weight: bold;
@@ -39,77 +69,38 @@ header img{
     width: 40px;
   }
 }
-
-
 header img:hover {
   transform: scale(1.1); /* Enlarges slightly on hover */
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3); /* Adds hover shadow effect */
 }
 
-#songs-container{
-  max-width: 800px;
-  margin: 20px auto;
+#song-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
   padding: 10px;
-  background-color: cyan;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-
-.song {
+.song-item {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-bottom: 1px solid #ddd;
-  padding: 10px 0;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background: #f9f9f9;
 }
 
-.song:last-child{
-  border-bottom: none;
-}
-
-.song p {
-  margin: 0;
-  font-size: 16px;
-  font-weight: bold;
-  color: #555;
-}
-
-.play-btn, .pause.btn{
+.play-button {
+  padding: 5px 10px;
+  font-size: 14px;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
   background-color: #007bff;
   color: white;
-  border: none;
-  padding: 8px 12px;
-  border-radius: 5px;
-  cursor: pointer;
-  font-size: 14px;
-  transition: background-color 0.3s ease;
-  margin-left: 5px;
 }
 
-.play-btn:hover, .pause-btn:hover {
+.play-button:hover {
   background-color: #0056b3;
-}
-
-.play-btn[disabled], .pause.btn[disabled]{
-  background-color: #cccccc;
-  cursor: not-allowed;
-}
-
-/* Responsive Styling */
-@media (max-width: 768px) {
-  .song {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  .play-btn, .pause-btn {
-    margin: 5px 0 0;
-    width: 100%;
-  }
-
-  .song p {
-    font-size: 14px;
-    text-align: center;
-  }
 }

@@ -1,93 +1,80 @@
-document.addEventListener('DOMContentLoaded', () => {
-  const songsContainer = document.getElementById('songs-container');
-  let currentAudio = null; // Keeps track of the currently playing audio
+document.addEventListener("DOMContentLoaded", () => {
+  const songContainer = document.getElementById("song-container");
+  const searchBar = document.getElementById("search-bar");
+  const searchButton = document.getElementById("search-button");
 
-  // Fetch songs from the JSON file
-  fetch('songs.json')
-    .then(response => {
-      if (!response.ok) {
-        throw new Error('Failed to fetch songs');
-      }
-      return response.json();
+  let currentAudio = null; // Track the currently playing song
+  let songsList = []; // Store the full list of songs
+
+  // Fetch and load songs from JSON
+  fetch("songs.json")
+    .then((response) => response.json())
+    .then((songs) => {
+      songsList = songs; // Save all songs
+      displaySongs(songsList); // Display all songs initially
     })
-    .then(songs => {
-      // Clear existing content
-      songsContainer.innerHTML = '';
-
-      // Loop through songs and create HTML elements for each
-      songs.forEach(song => {
-        const songElement = document.createElement('div');
-        songElement.classList.add('song');
-
-        // Add content to the song element
-        songElement.innerHTML = `
-          <p><strong>${song.title}</strong> - ${song.artist}</p>
-          <button class="play-btn" data-file="${song.file}">Play</button>
-          <button class="pause-btn" data-file="${song.file}" disabled>Pause</button>
-        `;
-
-        // Append the song element to the container
-        songsContainer.appendChild(songElement);
-      });
-
-      // Add play functionality to each Play button
-      document.querySelectorAll('.play-btn').forEach(button => {
-        button.addEventListener('click', () => {
-          const audioFile = button.getAttribute('data-file');
-          playSong(audioFile, button);
-        });
-      });
-
-      // Add pause functionality to each Pause button
-      document.querySelectorAll('.pause-btn').forEach(button => {
-        button.addEventListener('click', () => {
-          pauseSong(button);
-        });
-      });
-    })
-    .catch(error => {
-      console.error('Error loading songs:', error);
-      songsContainer.innerHTML = '<p>Failed to load songs. Please try again later.</p>';
+    .catch((error) => {
+      console.error("Error loading songs:", error);
     });
 
-  // Function to play a song
-  function playSong(file, playButton) {
-    // Stop the currently playing audio if it exists
-    if (currentAudio) {
-      currentAudio.pause();
-      currentAudio.currentTime = 0; // Reset playback position
-    }
+  function displaySongs(songs) {
+    songContainer.innerHTML = ""; // Clear previous songs
 
-    // Enable the Pause button and disable the Play button
-    const pauseButton = playButton.nextElementSibling;
-    playButton.disabled = true;
-    pauseButton.disabled = false;
+    songs.forEach((song) => {
+      const songDiv = document.createElement("div");
+      songDiv.className = "song-item";
 
-    // Create a new audio instance for the selected song
-    currentAudio = new Audio(file);
-    currentAudio.play();
+      // Add song title and artist
+      const title = document.createElement("p");
+      title.textContent = `${song.title} - ${song.artist}`;
+      songDiv.appendChild(title);
 
-    // Log an error if the audio can't be played
-    currentAudio.addEventListener('error', () => {
-      console.error('Error playing song:', file);
-    });
+      // Add play/pause button
+      const playButton = document.createElement("button");
+      playButton.textContent = "Play";
+      playButton.className = "play-button";
+      playButton.addEventListener("click", () => {
+        handlePlayPause(song.file, playButton);
+      });
+      songDiv.appendChild(playButton);
 
-    // Re-enable Play button when the song ends
-    currentAudio.addEventListener('ended', () => {
-      playButton.disabled = false;
-      pauseButton.disabled = true;
+      songContainer.appendChild(songDiv);
     });
   }
 
-  // Function to pause the current song
-  function pauseSong(pauseButton) {
+  function handlePlayPause(file, button) {
     if (currentAudio) {
-      currentAudio.pause();
+      currentAudio.pause(); // Pause the current audio
+      currentAudio = null; // Reset the current audio
     }
 
-    // Re-enable the Play button and disable the Pause button
-    const playButton = pauseButton.previousElementSibling;
-    playButton.disabled = false;
-    pauseButton.disabled = true;
+    // If the button was "Play," start playing the new song
+    if (button.textContent === "Play") {
+      const audio = new Audio(file); // Create a new audio object
+      audio.play().catch((error) => {
+        console.error("Error playing song:", error);
+      });
+
+      currentAudio = audio; // Set the new audio as the current audio
+
+      // Update the button text and handle audio end
+      button.textContent = "Pause";
+      audio.addEventListener("ended", () => {
+        button.textContent = "Play"; // Reset button when song ends
+        currentAudio = null; // Clear current audio
+      });
+    } else {
+      button.textContent = "Play"; // Reset button text if paused
+    }
   }
+
+  // Add search functionality
+  searchButton.addEventListener("click", () => {
+    const query = searchBar.value.toLowerCase(); // Get the search query
+    const filteredSongs = songsList.filter((song) =>
+      song.title.toLowerCase().includes(query) ||
+      song.artist.toLowerCase().includes(query)
+    );
+    displaySongs(filteredSongs); // Display only filtered songs
+  });
 });

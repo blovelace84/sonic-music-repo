@@ -10,21 +10,21 @@ body.green-hill-zone {
   background-image: url('image/green-hill-zone.png');
   background-size: cover;
   background-position: center;
-  color: #ffffff;
+  color: royalblue;
 }
 
 body.chemical-plant {
   background-image: url('image/chemical-plant.jpg');
   background-size: cover;
   background-position: center;
-  color: #ffffff;
+  color: royalblue;
 }
 
 body.sky-sanctuary {
   background-image: url('image/sky sanctuary.jpg');
   background-size: cover;
   background-position: center;
-  color: #ffffff;
+  color: royalblue;
 }
 
 #search-container{
@@ -111,7 +111,6 @@ header img:hover {
   }
 }
 
-
 #song-container {
   display: flex;
   flex-direction: column;
@@ -124,9 +123,9 @@ header img:hover {
   justify-content: space-between;
   align-items: center;
   padding: 10px;
-  border: 1px solid #ccc;
+  border: 1px solid royalblue;
   border-radius: 5px;
-  background: ;
+  background: gold;
 }
 
 .play-button {

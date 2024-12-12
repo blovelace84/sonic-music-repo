@@ -1,4 +1,4 @@
-body{
+body.default{
   font-family: Arial, Helvetica, sans-serif;
   margin: 0;
   padding: 0;
@@ -6,15 +6,25 @@ body{
   color: #333;
 }
 
-header{
-  background: linear-gradient(135deg, #0f4c81, #003f5c);
-  color: white;
-  padding: 20px;
-  margin: 0 auto;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  position: sticky;
-  top: 0;
-  z-index: 1000;
+body.green-hill-zone {
+  background-image: url('image/green-hill-zone.png');
+  background-size: cover;
+  background-position: center;
+  color: #ffffff;
+}
+
+body.chemical-plant {
+  background-image: url('image/chemical-plant.jpg');
+  background-size: cover;
+  background-position: center;
+  color: #ffffff;
+}
+
+body.sky-sanctuary {
+  background-image: url('image/sky sanctuary.jpg');
+  background-size: cover;
+  background-position: center;
+  color: #ffffff;
 }
 
 #search-container{
@@ -47,32 +57,60 @@ header{
   background-color: #085d9b;
 }
 
-header h1{
-  font-size: 24px;
-  font-weight: bold;
-  margin: 0;
-  text-align: center;
+/* Header container */
+header {
+  display: flex; /* Align content horizontally */
+  align-items: center; /* Center items vertically */
+  justify-content: space-between; /* Space between the h1 and image */
+  background-color: #0b3d91; /* Sonic-themed deep blue */
+  color: white; /* Contrast text color */
+  padding: 20px 40px; /* Spacing around the content */
+  border-bottom: 5px solid #ffc500; /* Golden accent border */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Slight shadow for depth */
 }
 
-header img{
-  height: 50px;
-  width: 50px;
-  border-radius: 50%; /* Makes it circular */
-  margin-right: 10px; /* Adds spacing around the image */
-  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Animation effects */
+/* Header h1 */
+header h1 {
+  font-size: 36px; /* Larger font for title */
+  font-family: 'Sonic Font', sans-serif; /* Add a custom Sonic-like font if available */
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5); /* Glow effect for h1 */
+  margin: 0; /* Remove default margin */
 }
 
-/* Responsive Images */
-@media (max-width: 768px) {
+/* Header image */
+header img {
+  height: 80px; /* Fixed height for consistent scaling */
+  width: auto; /* Maintain aspect ratio */
+  border-radius: 50%; /* Make it circular */
+  border: 3px solid white; /* White border for contrast */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3); /* Shadow effect */
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth hover effect */
+}
+
+/* Header image hover effect */
+header img:hover {
+  transform: scale(1.1); /* Slight zoom */
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.5); /* Increase shadow on hover */
+}
+
+/* Responsive styling */
+@media screen and (max-width: 768px) {
+  header {
+    flex-direction: column; /* Stack items vertically */
+    text-align: center; /* Center align text */
+    padding: 20px; /* Adjust padding */
+  }
+
+  header h1 {
+    font-size: 28px; /* Reduce font size for smaller screens */
+  }
+
   header img {
-    height: 40px;
-    width: 40px;
+    height: 60px; /* Adjust image size for smaller screens */
+    margin-top: 10px; /* Add space between h1 and img */
   }
 }
-header img:hover {
-  transform: scale(1.1); /* Enlarges slightly on hover */
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3); /* Adds hover shadow effect */
-}
+
 
 #song-container {
   display: flex;
@@ -88,7 +126,7 @@ header img:hover {
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 5px;
-  background: #f9f9f9;
+  background: ;
 }
 
 .play-button {
@@ -103,4 +141,72 @@ header img:hover {
 
 .play-button:hover {
   background-color: #0056b3;
+}
+
+#clear-button{
+  padding: 5px 10px;
+  font-size: 14px;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+  background-color: #007bff;
+  color: white;
+}
+
+/* Container for theme selector */
+#theme-container {
+  margin: 20px auto;
+  text-align: center;
+}
+
+#theme-container label {
+  font-size: 18px;
+  font-weight: bold;
+  color: #333;
+  margin-right: 10px;
+}
+
+/* Dropdown (theme selector) */
+#theme-selector {
+  width: 200px;
+  height: 40px;
+  font-size: 16px;
+  font-weight: bold;
+  border: 2px solid #ccc;
+  border-radius: 8px;
+  padding: 5px;
+  background-color: #f7f7f7;
+  color: #333;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+#theme-selector:hover {
+  border-color: #555;
+  background-color: #eaeaea;
+}
+
+/* Dropdown focus/active state */
+#theme-selector:focus {
+  outline: none;
+  border-color: #007BFF; /* Blue outline */
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+/* Dropdown options styling (for some browsers) */
+#theme-selector option {
+  background-color: #fff;
+  color: #333;
+}
+
+/* Responsive design */
+@media screen and (max-width: 600px) {
+  #theme-container label {
+    font-size: 16px;
+  }
+
+  #theme-selector {
+    width: 150px;
+    font-size: 14px;
+  }
 }

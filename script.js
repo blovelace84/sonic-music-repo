@@ -2,6 +2,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const songContainer = document.getElementById("song-container");
   const searchBar = document.getElementById("search-bar");
   const searchButton = document.getElementById("search-button");
+  const clearButton = document.getElementById("clear-button"); 
 
   let currentAudio = null; // Track the currently playing song
   let songsList = []; // Store the full list of songs
@@ -77,4 +78,30 @@ document.addEventListener("DOMContentLoaded", () => {
     );
     displaySongs(filteredSongs); // Display only filtered songs
   });
+  clearButton.addEventListener("click", () => {
+    searchBar.value = ""; //Clear the search bar
+    displaySongs(songsList);
+  });
+});
+
+document.addEventListener("DOMContentLoaded", () => {
+  const themeSelector = document.getElementById("theme-selector");
+
+  // Function to update the theme
+  function updateTheme(selectedTheme) {
+    // Remove existing theme classes
+    document.body.classList.remove("default", "green-hill-zone", "chemical-plant", "sky-sanctuary");
+
+    // Add the selected theme class
+    document.body.classList.add(selectedTheme);
+  }
+
+  // Event listener for the theme selector
+  themeSelector.addEventListener("change", (event) => {
+    const selectedTheme = event.target.value; // Get the selected theme
+    updateTheme(selectedTheme); // Update the theme
+  });
+
+  // Set default theme on page load
+  updateTheme("default");
 });

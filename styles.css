@@ -98,7 +98,7 @@ header img:hover {
   header {
     flex-direction: column; /* Stack items vertically */
     text-align: center; /* Center align text */
-    padding: 20px; /* Adjust padding */
+    padding: 15px; /* Adjust padding */
   }
 
   header h1 {

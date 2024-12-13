@@ -62,7 +62,8 @@ header {
   display: flex;
   align-items: center;
   justify-content: space-between; /* Spread items apart */
-  flex-wrap: wrap; /* Wrap elements for smaller screens */
+  flex-wrap: wrap;
+  margin: 10px 20px; /* Wrap elements for smaller screens */
   padding: 15px 20px; /* Adjust padding for spacing */
   background-color: #0b3d91; /* Sonic blue theme */
   color: white; /* Text color for readability */

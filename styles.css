@@ -57,60 +57,60 @@ body.sky-sanctuary {
   background-color: #085d9b;
 }
 
-/* Header container */
+/* Header container styling */
 header {
-  display: flex; /* Align content horizontally */
-  align-items: center; /* Center items vertically */
-  justify-content: space-between; /* Space between the h1 and image */
-  background-color: #0b3d91; /* Sonic-themed deep blue */
-  color: white; /* Contrast text color */
-  padding: 20px 40px; /* Spacing around the content */
-  border-bottom: 5px solid #ffc500; /* Golden accent border */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Slight shadow for depth */
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* Spread items apart */
+  flex-wrap: wrap; /* Wrap elements for smaller screens */
+  padding: 15px 20px; /* Adjust padding for spacing */
+  background-color: #0b3d91; /* Sonic blue theme */
+  color: white; /* Text color for readability */
+  border-bottom: 4px solid #ffc500; /* Sonic-inspired golden border */
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Add subtle shadow */
 }
 
-/* Header h1 */
+/* Styling for header title (h1) */
 header h1 {
-  font-size: 36px; /* Larger font for title */
-  font-family: 'Sonic Font', sans-serif; /* Add a custom Sonic-like font if available */
-  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5); /* Glow effect for h1 */
-  margin: 0; /* Remove default margin */
-  word-wrap: break-word;
+  font-size: 2rem; /* Responsive font size */
+  margin: 0; /* Remove margin */
+  flex: 1; /* Allow title to take space */
+  text-align: center; /* Center-align text */
+  line-height: 1.2; /* Improve readability */
 }
 
-/* Header image */
+/* Header image (e.g., Sonic logo) */
 header img {
-  height: 80px; /* Fixed height for consistent scaling */
+  height: 70px; /* Responsive height */
   width: auto; /* Maintain aspect ratio */
   border-radius: 50%; /* Make it circular */
-  border: 3px solid white; /* White border for contrast */
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3); /* Shadow effect */
-  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth hover effect */
+  margin: 0 10px; /* Add spacing around */
 }
 
-/* Header image hover effect */
-header img:hover {
-  transform: scale(1.1); /* Slight zoom */
-  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.5); /* Increase shadow on hover */
-}
-
-/* Responsive styling */
+/* Mobile adjustments */
 @media screen and (max-width: 768px) {
   header {
-    flex-direction: column; /* Stack items vertically */
-    text-align: center; /* Center align text */
-    padding: 15px; /* Adjust padding */
+    flex-direction: column; /* Stack elements vertically */
+    text-align: center; /* Center-align content */
+    padding: 10px 15px; /* Reduce padding */
   }
 
   header h1 {
-    font-size: 28px; /* Reduce font size for smaller screens */
+    font-size: 1.5rem; /* Reduce font size for smaller screens */
   }
 
   header img {
-    height: 60px; /* Adjust image size for smaller screens */
-    margin-top: 10px; /* Add space between h1 and img */
+    height: 60px; /* Adjust logo size */
+    margin-bottom: 10px; /* Add spacing below image */
   }
 }
+
+/* Optional: Add hover effect for logo */
+header img:hover {
+  transform: scale(1.1); /* Slight zoom on hover */
+  transition: transform 0.3s ease; /* Smooth transition */
+}
+
 
 #song-container {
   display: flex;

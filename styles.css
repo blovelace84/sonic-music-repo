@@ -89,7 +89,7 @@ header img {
 }
 
 /* Mobile adjustments */
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 823px) {
   header {
     flex-direction: column; /* Stack elements vertically */
     text-align: center; /* Center-align content */

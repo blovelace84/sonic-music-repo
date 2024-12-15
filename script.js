@@ -1,107 +1,98 @@
 document.addEventListener("DOMContentLoaded", () => {
-  const songContainer = document.getElementById("song-container");
-  const searchBar = document.getElementById("search-bar");
-  const searchButton = document.getElementById("search-button");
-  const clearButton = document.getElementById("clear-button"); 
+  const songsContainer = document.getElementById("songsContainer");
+  const searchInput = document.getElementById("searchInput");
+  const searchButton = document.getElementById("searchButton");
+  const themeSelector = document.getElementById("themeSelector");
+  let currentAudio = null;
+  let fadeInterval = 50; // 50ms interval for fade
 
-  let currentAudio = null; // Track the currently playing song
-  let songsList = []; // Store the full list of songs
-
-  // Fetch and load songs from JSON
+  // Fetch and display songs
   fetch("songs.json")
-    .then((response) => response.json())
-    .then((songs) => {
-      songsList = songs; // Save all songs
-      displaySongs(songsList); // Display all songs initially
-    })
-    .catch((error) => {
-      console.error("Error loading songs:", error);
+    .then(response => response.json())
+    .then(songList => displaySongs(songList))
+    .catch(error => console.error("Error loading songs:", error));
+
+  function displaySongs(songList) {
+    songsContainer.innerHTML = ""; // Clear existing songs
+    songList.forEach(song => {
+      const trackElement = document.createElement("div");
+      trackElement.classList.add("track");
+
+      trackElement.innerHTML = `
+        <img src="${song.thumbnail}" alt="${song.title} thumbnail" class="thumbnail">
+        <div class="info">
+          <h3>${song.title}</h3>
+          <p>${song.artist}</p>
+        </div>
+        <button data-audio="${song.audio}" class="play-button">Play</button>
+      `;
+
+      songsContainer.appendChild(trackElement);
     });
 
-  function displaySongs(songs) {
-    songContainer.innerHTML = ""; // Clear previous songs
+    addPlayListeners();
+  }
 
-    songs.forEach((song) => {
-      const songDiv = document.createElement("div");
-      songDiv.className = "song-item";
-
-      // Add song title and artist
-      const title = document.createElement("p");
-      title.textContent = `${song.title} - ${song.artist}`;
-      songDiv.appendChild(title);
-
-      // Add play/pause button
-      const playButton = document.createElement("button");
-      playButton.textContent = "Play";
-      playButton.className = "play-button";
-      playButton.addEventListener("click", () => {
-        handlePlayPause(song.file, playButton);
+  function addPlayListeners() {
+    const playButtons = document.querySelectorAll(".play-button");
+    playButtons.forEach(button => {
+      button.addEventListener("click", () => {
+        const audioSrc = button.getAttribute("data-audio");
+        playSong(audioSrc);
       });
-      songDiv.appendChild(playButton);
-
-      songContainer.appendChild(songDiv);
     });
   }
 
-  function handlePlayPause(file, button) {
+  function playSong(audioSrc) {
     if (currentAudio) {
-      currentAudio.pause(); // Pause the current audio
-      currentAudio = null; // Reset the current audio
+      fadeOut(currentAudio, 1000);
     }
 
-    // If the button was "Play," start playing the new song
-    if (button.textContent === "Play") {
-      const audio = new Audio(file); // Create a new audio object
-      audio.play().catch((error) => {
-        console.error("Error playing song:", error);
-      });
-
-      currentAudio = audio; // Set the new audio as the current audio
-
-      // Update the button text and handle audio end
-      button.textContent = "Pause";
-      audio.addEventListener("ended", () => {
-        button.textContent = "Play"; // Reset button when song ends
-        currentAudio = null; // Clear current audio
-      });
-    } else {
-      button.textContent = "Play"; // Reset button text if paused
-    }
+    const newAudio = new Audio(audioSrc);
+    currentAudio = newAudio;
+    fadeIn(newAudio, 1000);
+    newAudio.play();
   }
 
-  // Add search functionality
+  function fadeOut(audio, duration) {
+    const step = 1 / (duration / fadeInterval);
+    const fadeOutInterval = setInterval(() => {
+      if (audio.volume > 0) {
+        audio.volume = Math.max(0, audio.volume - step);
+      } else {
+        clearInterval(fadeOutInterval);
+        audio.pause();
+      }
+    }, fadeInterval);
+  }
+
+  function fadeIn(audio, duration) {
+    audio.volume = 0;
+    const step = 1 / (duration / fadeInterval);
+    const fadeInInterval = setInterval(() => {
+      if (audio.volume < 1) {
+        audio.volume = Math.min(1, audio.volume + step);
+      } else {
+        clearInterval(fadeInInterval);
+      }
+    }, fadeInterval);
+  }
+
   searchButton.addEventListener("click", () => {
-    const query = searchBar.value.toLowerCase(); // Get the search query
-    const filteredSongs = songsList.filter((song) =>
-      song.title.toLowerCase().includes(query) ||
-      song.artist.toLowerCase().includes(query)
-    );
-    displaySongs(filteredSongs); // Display only filtered songs
-  });
-  clearButton.addEventListener("click", () => {
-    searchBar.value = ""; //Clear the search bar
-    displaySongs(songsList);
-  });
-});
-
-document.addEventListener("DOMContentLoaded", () => {
-  const themeSelector = document.getElementById("theme-selector");
-
-  // Function to update the theme
-  function updateTheme(selectedTheme) {
-    // Remove existing theme classes
-    document.body.classList.remove("default", "green-hill-zone", "chemical-plant", "sky-sanctuary");
-
-    // Add the selected theme class
-    document.body.classList.add(selectedTheme);
-  }
-
-  // Event listener for the theme selector
-  themeSelector.addEventListener("change", (event) => {
-    const selectedTheme = event.target.value; // Get the selected theme
-    updateTheme(selectedTheme); // Update the theme
+    const searchTerm = searchInput.value.toLowerCase();
+    fetch("songs.json")
+      .then(response => response.json())
+      .then(songList => {
+        const filteredSongs = songList.filter(song =>
+          song.title.toLowerCase().includes(searchTerm) ||
+          song.artist.toLowerCase().includes(searchTerm)
+        );
+        displaySongs(filteredSongs);
+      });
   });
 
-  // Set default theme on page load
-  updateTheme("default");
+  themeSelector.addEventListener("change", () => {
+    const theme = themeSelector.value;
+    document.body.className = theme; // Apply theme class to body
+  });
 });

@@ -1,23 +1,75 @@
 [
-    {"title": "Green Hill Zone", "artist": "Masato Nakamura", "file": "audio/02-Green Hill Zone.mp3"},
-    {"title": "Marble Zone", "artist": "Masato Nakamura", "file": "audio/03-Marble Zone.mp3"},
-    {"title": "Spring Yard Zone", "artist": "Masato Nakamura", "file":"audio/04-Spring Yard Zone.mp3"},
-    {"title": "Boss Battle S1", "artist": "Masato Nakamura", "file": "audio/08-Boss.mp3"},
-    {"title": "Emerald Hill Zone", "artist": "Masato Nakamura", "file": "audio/02_-_Emerald_Hill_Zone.mp3"},
-    {"title": "Chemical Plant", "artist": "Masato Nakamura", "file": "audio/03_-_Chemical_Plant_Zone.mp3"},
-    {"title": "Boss Battle S2", "artist": "Masato Nakamura", "file": "audio/13_-_Boss.mp3"},
-    {"title": "Angel Island", "artist": "Jun Senoue", "file": "audio/04-angel_island_act_1.mp3"},
-    {"title": "Flying Battery", "artist": "Jun Senoue", "file": "audio/18-flying_battery_act_1.mp3"},
-    {"title": "Carnival Night", "artist": "Jun Senoue", "file": "audio/10-carnival_night_act_1.mp3"},
-    {"title": "Boss Battle S3", "artist": "Jun Senoue", "file": "audio/50-s3_act_1_boss.mp3"},
-    {"title": "Final Boss S3", "artist": "Jun Senoue", "file": "audio/53-final_boss.mp3"},
-    {"title": "Open Your Heart", "artist": "Crush 40", "file": "audio/06 Open Your Heart (MAIN THEME OF SONIC Adventure).mp3"},
-    {"title": "It Doesn't Matter", "artist": "Tony Harnell", "file": "audio/01 It Doesnt Matter (THEME OF SONIC).mp3"},
-    {"title": "Emerald Coast", "artist": "Kenichi Tokoi", "file": "audio/1-05 Azure Blue World for Emerald Coast.mp3"},
-    {"title": "Escape From the City", "artist": "Tony Harnell", "file": "audio/02 Escape from the City.mp3"},
-    {"title": "It Doesn't Matter SA2" , "artist": "Tony Harnell", "file": "audio/01 It Doesn't Matter.mp3"},
-    {"title": "E.G.G.M.A.N", "artist": "Pauls Shortino", "file": "audio/07_eggman.mp3"},
-    {"title": "Live and Learn", "artist": "Johnny Gioeli", "file": "audio/08 Live And Learn.mp3"},
-    {"title": "Sonic Boom", "artist": "Spencer Nilsen", "file": "audio/us_sonic_boom_full.mp3"},
-    {"title": "Sonic Heroes", "artist": "Crush 40", "file": "audio/01 SONIC HEROES.mp3"}
-    ]
+    {
+        "title": "Green Hill Zone",
+        "artist": "Sonic the Hedgehog",
+        "thumbnail": "image/green-hill-zone.png",
+        "audio": "audio/02-Green Hill Zone.mp3"
+    },
+    {
+        "title": "Marble Zone",
+        "artist": "Sonic the Hedgehog",
+        "thumbnail": "image/Marble Zone.jpg",
+        "audio": "audio/03-Marble Zone.mp3"
+    },
+    {
+        "title": "Spring Yard Zone",
+        "artist": "Sonic the Hedgehog",
+        "thumbnail": "image/Spring Yard Zone.jpg",
+        "audio": "audio/04-Spring Yard Zone.mp3"
+    },
+    {
+        "title": "Boss Battle STH",
+        "artist": "Sonic the Hedgehog",
+        "thumbnail": "image/eggman sth1.jpg",
+        "audio": "audio/08-Boss.mp3"
+    },
+    {
+        "title": "Emerald Hill Zone",
+        "artist": "Sonic the Hedgehog 2",
+        "thumbnail": "image/Emerald Hill Zone.jpg",
+        "audio": "audio/02_-_Emerald_Hill_Zone.mp3"
+    },
+    {
+        "title": "Chemcial Plant",
+        "artist": "Sonic the Hedgehog 2",
+        "thumbnail": "image/chemical-plant.jpg",
+        "audio": "audio/08-Boss.mp3"
+    },
+    {
+        "title": "Boss Battle STH2",
+        "artist": "Sonic the Hedgehog 2",
+        "thumbnail": "image/Boss sth2.jpg",
+        "audio": "audio/13_-_Boss.mp3"
+    },
+    {
+        "title": "Angel Island",
+        "artist": "Sonic the Hedgehog 3",
+        "thumbnail": "image/Angel Island.jpg",
+        "audio": "audio/04-angel_island_act_1.mp3"
+    },
+    {
+        "title": "Flying Battery",
+        "artist": "Sonic the Hedgehog 3",
+        "thumbnail": "image/Flying Battery.jpg",
+        "audio": "audio/18-flying_battery_act_1.mp3"
+    },
+    {
+        "title": "Carnival Night",
+        "artist": "Sonic the Hedgehog 3",
+        "thumbnail": "image/Carnival Night.jpg",
+        "audio": "audio/10-carnival_night_act_1.mp3"
+    },
+    {
+        "title": "Boss Battle STH3",
+        "artist": "Sonic the Hedgehog 3",
+        "thumbnail": "image/Eggman sth 3.jpg",
+        "audio": "audio/50-s3_act_1_boss.mp3"
+    },
+    {
+        "title": "Final Battle STH3",
+        "artist": "Sonic the Hedgehog 3",
+        "thumbnail": "image/Eggman final boss sth 3.jpg",
+        "audio": "image/Eggman final boss sth 3.jpg"
+    }
+
+]

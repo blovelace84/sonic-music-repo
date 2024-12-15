@@ -1,213 +1,72 @@
-body.default{
-  font-family: Arial, Helvetica, sans-serif;
+body {
+  font-family: Arial, sans-serif;
   margin: 0;
   padding: 0;
-  background-color: blue;
-  color: #333;
+  background-color: deepskyblue;
 }
 
-body.green-hill-zone {
-  background-image: url('image/green-hill-zone.png');
-  background-size: cover;
-  background-position: center;
-  color: royalblue;
-}
-
-body.chemical-plant {
-  background-image: url('image/chemical-plant.jpg');
-  background-size: cover;
-  background-position: center;
-  color: royalblue;
-}
-
-body.sky-sanctuary {
-  background-image: url('image/sky sanctuary.jpg');
-  background-size: cover;
-  background-position: center;
-  color: royalblue;
-}
-
-#search-container{
-  display: flex;
-  justify-content: center;
-  margin: 20px auto;
-  gap: 10px;
-}
-
-#search-bar{
-  width: 300px;
-  padding: 10px;
-  font-size: 16px;
-  border: 2px solid #0f4c81;
-  border-radius: 5px;
-}
-
-#search-button{
-  padding: 10px 20px;
-  font-size: 16px;
-  background-color: #0f4c81;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s;
-}
-
-#search-button:hover{
-  background-color: #085d9b;
-}
-
-/* Header container styling */
 header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between; /* Spread items apart */
-  flex-wrap: wrap;
-  margin: 10px 20px; /* Wrap elements for smaller screens */
-  padding: 15px 20px; /* Adjust padding for spacing */
-  background-color: #0b3d91; /* Sonic blue theme */
-  color: white; /* Text color for readability */
-  border-bottom: 4px solid #ffc500; /* Sonic-inspired golden border */
-  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Add subtle shadow */
-}
-
-/* Styling for header title (h1) */
-header h1 {
-  font-size: 2rem; /* Responsive font size */
-  margin: 0; /* Remove margin */
-  flex: 1; /* Allow title to take space */
-  text-align: center; /* Center-align text */
-  line-height: 1.2; /* Improve readability */
-}
-
-/* Header image (e.g., Sonic logo) */
-header img {
-  height: 70px; /* Responsive height */
-  width: auto; /* Maintain aspect ratio */
-  border-radius: 50%; /* Make it circular */
-  margin: 0 10px; /* Add spacing around */
-}
-
-/* Mobile adjustments */
-@media screen and (max-width: 823px) {
-  header {
-    flex-direction: column; /* Stack elements vertically */
-    text-align: center; /* Center-align content */
-    padding: 10px 15px; /* Reduce padding */
-  }
-
-  header h1 {
-    font-size: 1.5rem; /* Reduce font size for smaller screens */
-  }
-
-  header img {
-    height: 60px; /* Adjust logo size */
-    margin-bottom: 10px; /* Add spacing below image */
-  }
-}
-
-/* Optional: Add hover effect for logo */
-header img:hover {
-  transform: scale(1.1); /* Slight zoom on hover */
-  transition: transform 0.3s ease; /* Smooth transition */
-}
-
-
-#song-container {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  padding: 10px;
-}
-
-.song-item {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  background-color: #222;
+  color: #fff;
+  padding: 10px 20px;
+}
+
+header h1 {
+  margin: 0;
+}
+
+.theme-selector {
+  margin-right: 20px;
+}
+
+.search-bar {
+  display: flex;
+  justify-content: center;
+  margin: 20px;
+}
+
+.search-bar input {
+  width: 300px;
   padding: 10px;
-  border: 1px solid royalblue;
-  border-radius: 5px;
-  background: gold;
+  font-size: 16px;
+}
+
+.search-bar button {
+  padding: 10px;
+  background-color: #007BFF;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.songs-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+}
+
+.track {
+  width: 200px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  text-align: center;
+  padding: 10px;
+}
+
+.track img {
+  width: 100%;
+  border-radius: 8px;
 }
 
 .play-button {
-  padding: 5px 10px;
-  font-size: 14px;
-  border: none;
-  border-radius: 3px;
-  cursor: pointer;
-  background-color: #007bff;
+  margin-top: 10px;
+  padding: 10px;
+  background-color: #28a745;
   color: white;
-}
-
-.play-button:hover {
-  background-color: #0056b3;
-}
-
-#clear-button{
-  padding: 5px 10px;
-  font-size: 14px;
   border: none;
-  border-radius: 3px;
   cursor: pointer;
-  background-color: #007bff;
-  color: white;
-}
-
-/* Container for theme selector */
-#theme-container {
-  margin: 20px auto;
-  text-align: center;
-}
-
-#theme-container label {
-  font-size: 18px;
-  font-weight: bold;
-  color: #333;
-  margin-right: 10px;
-}
-
-/* Dropdown (theme selector) */
-#theme-selector {
-  width: 200px;
-  height: 40px;
-  font-size: 16px;
-  font-weight: bold;
-  border: 2px solid #ccc;
-  border-radius: 8px;
-  padding: 5px;
-  background-color: #f7f7f7;
-  color: #333;
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-
-#theme-selector:hover {
-  border-color: #555;
-  background-color: #eaeaea;
-}
-
-/* Dropdown focus/active state */
-#theme-selector:focus {
-  outline: none;
-  border-color: #007BFF; /* Blue outline */
-  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
-}
-
-/* Dropdown options styling (for some browsers) */
-#theme-selector option {
-  background-color: #fff;
-  color: #333;
-}
-
-/* Responsive design */
-@media screen and (max-width: 600px) {
-  #theme-container label {
-    font-size: 16px;
-  }
-
-  #theme-selector {
-    width: 150px;
-    font-size: 14px;
-  }
 }

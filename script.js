@@ -91,8 +91,29 @@ document.addEventListener("DOMContentLoaded", () => {
       });
   });
 
-  themeSelector.addEventListener("change", () => {
-    const theme = themeSelector.value;
-    document.body.className = theme; // Apply theme class to body
-  });
+ // Get the theme selector dropdown
+
+// Add an event listener to handle theme changes
+themeSelector.addEventListener("change", (event) => {
+  const selectedTheme = event.target.value;
+
+  // Clear existing theme classes from the body
+  document.body.classList.remove("theme-default", "theme-green-hill", "theme-chemical-plant", "theme-sky-sanctuary");
+
+  // Apply the selected theme class
+  switch (selectedTheme) {
+    case "green-hill":
+      document.body.classList.add("theme-green-hill");
+      break;
+    case "chemical-plant":
+      document.body.classList.add("theme-chemical-plant");
+      break;
+    case "sky-sanctuary":
+      document.body.classList.add("theme-sky-sanctuary");
+      break;
+    default:
+      document.body.classList.add("theme-default");
+      break;
+  }
 });
+})

@@ -7,9 +7,10 @@ body {
 
 header {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: center;
-  background-color: #222;
+  background: rgb(235,229,10);
+  background: radial-gradient(circle, rgba(235,229,10,0.39539565826330536) 0%, rgba(8,27,219,1) 100%);
   color: #fff;
   padding: 10px 20px;
 }
@@ -17,9 +18,88 @@ header {
 header h1 {
   margin: 0;
 }
+header img {
+  width: 50px;
+  height: auto;
+  border-radius: 50%;
+  margin-right: 10px;
+  vertical-align: middle;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0,2);
+  border: 2px solid navy;
+}
 
 .theme-selector {
+  display: flex;
+  align-items: center;
+  gap: 10px;
   margin-right: 20px;
+}
+
+.theme-selector select{
+  padding: 8px 12px;
+  border: 2px solid #3498db;
+  border-radius: 8px;
+  background-color: #f4f4f4;
+  font-size: 1rem;
+  color: #333;
+  cursor: pointer;
+  outline: none;
+  transition: transform 0.2s ease-in-out;
+}
+
+.theme-selector select:hover{
+  background-color: #e8f0fe;
+  border-color: #2980b9;
+}
+
+.theme-selector select:focus{
+  border-color: #1abc9c;
+  box-shadow: 0 0 5px rgba(26, 188, 156, 0.5);
+  transform: scale(1.05);
+}
+
+.theme-selector label{
+  font-size: 1rem;
+  color: white;
+  font-weight: bold;
+}
+
+@media (max-width: 768px) {
+  .theme-selector {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 5px;
+  }
+
+  .theme-selector select {
+    width: 100%;
+    font-size: 1rem;
+  }
+}
+
+/* Green Hill Zone theme */
+body.theme-green-hill {
+  background-image: url('image/green-hill-zone.png'); /* Replace with your image path */
+  background-size: cover;
+  background-position: center;
+  color: #fff;
+}
+
+/* Chemical Plant theme */
+body.theme-chemical-plant {
+  background-image: url('image/chemical-plant.jpg'); /* Replace with your image path */
+  background-size: cover;
+  background-position: center;
+  color: #fff;
+}
+
+/* Sky Sanctuary theme */
+body.theme-sky-sanctuary {
+  background-image: url('image/sky sanctuary.jpg'); /* Replace with your image path */
+  background-size: cover;
+  background-position: center;
+  color: #fff;
 }
 
 .search-bar {
@@ -36,6 +116,7 @@ header h1 {
 
 .search-bar button {
   padding: 10px;
+  margin: 5px 10px;
   background-color: #007BFF;
   color: white;
   border: none;
@@ -52,6 +133,8 @@ header h1 {
 .track {
   width: 200px;
   border: 1px solid #ddd;
+  background-color: navy;
+  color: white;
   border-radius: 8px;
   text-align: center;
   padding: 10px;

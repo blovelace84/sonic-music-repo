@@ -69,7 +69,55 @@
         "title": "Final Battle STH3",
         "artist": "Sonic the Hedgehog 3",
         "thumbnail": "image/Eggman final boss sth 3.jpg",
-        "audio": "image/Eggman final boss sth 3.jpg"
+        "audio": "audio/53-final_boss.mp3"
+    },
+    {
+        "title": "Open Your Heart",
+        "artist": "Sonic Adventure DX",
+        "thumbnail": "image/SA1.jpg",
+        "audio": "audio/06 Open Your Heart (MAIN THEME OF SONIC Adventure).mp3"
+    },
+    {
+        "title": "It Doesn't Matter",
+        "artist": "Sonic Adventure DX",
+        "thumbnail": "image/Sonic sa1.jpg",
+        "audio": "audio/01 It Doesnt Matter (THEME OF SONIC).mp3"
+    },
+    {
+        "title": "Escape From the City",
+        "artist": "Sonic Adventure 2",
+        "thumbnail": "image/city escape.jpg",
+        "audio": "audio/02 Escape from the City.mp3"
+    },
+    {
+        "title": "It Doesn't Matter SA2",
+        "artist": "Sonic Adventure 2",
+        "thumbnail": "image/sonic sa2.jpg",
+        "audio": "audio/01 It Doesn't Matter.mp3"
+    },
+    {
+        "title": "E.G.G.M.A.N",
+        "artist": "Sonic Adventure 2",
+        "thumbnail": "image/eggman sa2.jpg",
+        "audio": "audio/07_eggman.mp3"
+    },
+    {
+        "title": "Live and Learn",
+        "artist": "Sonic Adventure 2",
+        "thumbnail": "image/Live and Learn.jpg",
+        "audio": "audio/08 Live And Learn.mp3"
+    },
+    {
+        "title": "Sonic Boom",
+        "artist": "Sonic CD",
+        "thumbnail": "image/sonic cd.jpg",
+        "audio": "audio/us_sonic_boom_full.mp3"
+    },
+    {
+        "title": "Sonic Heroes",
+        "artist": "Sonic Heroes",
+        "thumbnail": "image/sonic heroes.jpg",
+        "audio": "audio/01 SONIC HEROES.mp3"
     }
 
 ]

@@ -1,119 +1,116 @@
-document.addEventListener("DOMContentLoaded", () => {
-  const songsContainer = document.getElementById("songsContainer");
-  const searchInput = document.getElementById("searchInput");
-  const searchButton = document.getElementById("searchButton");
-  const themeSelector = document.getElementById("themeSelector");
-  let currentAudio = null;
-  let fadeInterval = 50; // 50ms interval for fade
+// Fetch and display tracks from songs.json
+async function loadSongs() {
+  try {
+    const response = await fetch('songs.json'); // Ensure this path is correct
+    const songs = await response.json();
 
-  // Fetch and display songs
-  fetch("songs.json")
-    .then(response => response.json())
-    .then(songList => displaySongs(songList))
-    .catch(error => console.error("Error loading songs:", error));
+    const songContainer = document.getElementById('songContainer');
+    songContainer.innerHTML = ''; // Clear the container
 
-  function displaySongs(songList) {
-    songsContainer.innerHTML = ""; // Clear existing songs
-    songList.forEach(song => {
-      const trackElement = document.createElement("div");
-      trackElement.classList.add("track");
+    // Add Search Bar and Buttons
+    addSearchBar(songs);
 
-      trackElement.innerHTML = `
-        <img src="${song.thumbnail}" alt="${song.title} thumbnail" class="thumbnail">
-        <div class="info">
-          <h3>${song.title}</h3>
-          <p>${song.artist}</p>
-        </div>
-        <button data-audio="${song.audio}" class="play-button">Play</button>
-      `;
-
-      songsContainer.appendChild(trackElement);
-    });
-
-    addPlayListeners();
+    // Display Songs
+    displaySongs(songs, songContainer);
+  } catch (error) {
+    console.error('Error loading songs:', error);
   }
+}
 
-  function addPlayListeners() {
-    const playButtons = document.querySelectorAll(".play-button");
-    playButtons.forEach(button => {
-      button.addEventListener("click", () => {
-        const audioSrc = button.getAttribute("data-audio");
-        playSong(audioSrc);
-      });
-    });
-  }
+// Function to display songs
+function displaySongs(songs, container) {
+  container.innerHTML = ''; // Clear container
+  songs.forEach((song) => {
+    // Create a container for each song
+    const songDiv = document.createElement('div');
+    songDiv.classList.add('song-item');
 
-  function playSong(audioSrc) {
-    if (currentAudio) {
-      fadeOut(currentAudio, 1000);
-    }
+    // Add thumbnail
+    const thumbnail = document.createElement('img');
+    thumbnail.src = song.thumbnail;
+    thumbnail.alt = `${song.title} thumbnail`;
+    thumbnail.classList.add('song-thumbnail');
 
-    const newAudio = new Audio(audioSrc);
-    currentAudio = newAudio;
-    fadeIn(newAudio, 1000);
-    newAudio.play();
-  }
+    // Add title and artist
+    const title = document.createElement('h3');
+    title.textContent = song.title;
 
-  function fadeOut(audio, duration) {
-    const step = 1 / (duration / fadeInterval);
-    const fadeOutInterval = setInterval(() => {
-      if (audio.volume > 0) {
-        audio.volume = Math.max(0, audio.volume - step);
+    const artist = document.createElement('p');
+    artist.textContent = song.artist;
+
+    // Add audio element
+    const audio = document.createElement('audio');
+    audio.src = song.url;
+
+    // Add play/pause button
+    const playButton = document.createElement('button');
+    playButton.textContent = 'Play';
+    playButton.classList.add('play-button');
+
+    playButton.addEventListener('click', () => {
+      if (audio.paused) {
+        audio.play();
+        playButton.textContent = 'Pause';
       } else {
-        clearInterval(fadeOutInterval);
         audio.pause();
+        playButton.textContent = 'Play';
       }
-    }, fadeInterval);
-  }
+    });
 
-  function fadeIn(audio, duration) {
-    audio.volume = 0;
-    const step = 1 / (duration / fadeInterval);
-    const fadeInInterval = setInterval(() => {
-      if (audio.volume < 1) {
-        audio.volume = Math.min(1, audio.volume + step);
-      } else {
-        clearInterval(fadeInInterval);
-      }
-    }, fadeInterval);
-  }
+    // Append elements to songDiv
+    songDiv.appendChild(thumbnail);
+    songDiv.appendChild(title);
+    songDiv.appendChild(artist);
+    songDiv.appendChild(playButton);
 
-  searchButton.addEventListener("click", () => {
-    const searchTerm = searchInput.value.toLowerCase();
-    fetch("songs.json")
-      .then(response => response.json())
-      .then(songList => {
-        const filteredSongs = songList.filter(song =>
-          song.title.toLowerCase().includes(searchTerm) ||
-          song.artist.toLowerCase().includes(searchTerm)
-        );
-        displaySongs(filteredSongs);
-      });
+    // Append audio element (optional for debugging)
+    songDiv.appendChild(audio);
+
+    // Append to the main container
+    container.appendChild(songDiv);
+  });
+}
+
+// Function to add search bar and buttons
+function addSearchBar(songs) {
+  const searchContainer = document.getElementById('searchContainer');
+  searchContainer.innerHTML = ''; // Clear search container
+
+  // Create search bar
+  const searchBar = document.createElement('input');
+  searchBar.type = 'text';
+  searchBar.placeholder = 'Search songs...';
+  searchBar.id = 'searchBar';
+
+  // Create search button
+  const searchButton = document.createElement('button');
+  searchButton.textContent = 'Search';
+  searchButton.id = 'searchButton';
+
+  // Create clear button
+  const clearButton = document.createElement('button');
+  clearButton.textContent = 'Clear';
+  clearButton.id = 'clearButton';
+
+  // Add event listeners
+  searchButton.addEventListener('click', () => {
+    const query = searchBar.value.toLowerCase();
+    const filteredSongs = songs.filter((song) =>
+      song.title.toLowerCase().includes(query) || song.artist.toLowerCase().includes(query)
+    );
+    displaySongs(filteredSongs, document.getElementById('songContainer'));
   });
 
- // Get the theme selector dropdown
+  clearButton.addEventListener('click', () => {
+    searchBar.value = '';
+    displaySongs(songs, document.getElementById('songContainer'));
+  });
 
-// Add an event listener to handle theme changes
-themeSelector.addEventListener("change", (event) => {
-  const selectedTheme = event.target.value;
+  // Append search bar and buttons to the container
+  searchContainer.appendChild(searchBar);
+  searchContainer.appendChild(searchButton);
+  searchContainer.appendChild(clearButton);
+}
 
-  // Clear existing theme classes from the body
-  document.body.classList.remove("theme-default", "theme-green-hill", "theme-chemical-plant", "theme-sky-sanctuary");
-
-  // Apply the selected theme class
-  switch (selectedTheme) {
-    case "green-hill":
-      document.body.classList.add("theme-green-hill");
-      break;
-    case "chemical-plant":
-      document.body.classList.add("theme-chemical-plant");
-      break;
-    case "sky-sanctuary":
-      document.body.classList.add("theme-sky-sanctuary");
-      break;
-    default:
-      document.body.classList.add("theme-default");
-      break;
-  }
-});
-})
+// Load songs on page load
+document.addEventListener('DOMContentLoaded', loadSongs);

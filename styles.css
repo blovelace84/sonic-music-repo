@@ -102,54 +102,75 @@ body.theme-sky-sanctuary {
   color: #fff;
 }
 
-.search-bar {
+#searchContainer {
   display: flex;
   justify-content: center;
-  margin: 20px;
+  align-items: center;
+  margin: 20px 0;
 }
 
-.search-bar input {
+#searchBar {
   width: 300px;
   padding: 10px;
-  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-right: 10px;
 }
 
-.search-bar button {
-  padding: 10px;
-  margin: 5px 10px;
-  background-color: #007BFF;
-  color: white;
+#searchButton,
+#clearButton {
+  padding: 10px 20px;
+  margin-right: 5px;
   border: none;
+  border-radius: 5px;
+  background-color: #4CAF50;
+  color: white;
   cursor: pointer;
 }
 
-.songs-container {
+#searchButton:hover,
+#clearButton:hover {
+  background-color: #45a049;
+}
+
+
+#songContainer {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
   gap: 20px;
+  justify-content: center;
 }
 
-.track {
+.song-item {
   width: 200px;
-  border: 1px solid #ddd;
-  background-color: navy;
-  color: white;
+  border: 1px solid #ccc;
   border-radius: 8px;
-  text-align: center;
   padding: 10px;
+  text-align: center;
+  color: white;
+  background-color: navy;
 }
 
-.track img {
+.song-thumbnail {
   width: 100%;
+  height: auto;
   border-radius: 8px;
 }
 
 .play-button {
   margin-top: 10px;
-  padding: 10px;
-  background-color: #28a745;
+  padding: 5px 10px;
+  background-color: #007BFF;
   color: white;
   border: none;
+  border-radius: 5px;
   cursor: pointer;
+}
+
+.play-button.playing {
+  background-color: #FF5722;
+}
+
+.play-button:hover {
+  background-color: #0056b3;
 }

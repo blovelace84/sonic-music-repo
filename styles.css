@@ -140,10 +140,21 @@ body.skySanctuary-theme {
   cursor: pointer;
 }
 
-.play-button.playing {
-  background-color: #FF5722;
+/* For phones */
+@media (max-width: 480px) {
+  .song img {
+    max-width: 80%;
+  }
 }
 
-.play-button:hover {
-  background-color: #0056b3;
+/* For tablets */
+@media (min-width: 481px) and (max-width: 768px) {
+  .song {
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .song img {
+    max-width: 120px;
+  }
 }

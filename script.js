@@ -114,3 +114,21 @@ function addSearchBar(songs) {
 
 // Load songs on page load
 document.addEventListener('DOMContentLoaded', loadSongs);
+
+document.getElementById('theme').addEventListener('change', (event) => {
+  const selectedTheme = event.target.value;
+  document.body.className = ''; // Clear all existing theme classes
+  switch (selectedTheme) {
+    case 'greenHill':
+      document.body.classList.add('greenHill-theme');
+      break;
+    case 'chemicalPlant':
+      document.body.classList.add('chemicalPlant-theme');
+      break;
+    case 'skySanctuary':
+      document.body.classList.add('skySanctuary-theme');
+      break;
+    default:
+      document.body.classList.add('default-theme');
+  }
+});

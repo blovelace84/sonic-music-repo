@@ -2,121 +2,121 @@
     {
         "title": "Green Hill Zone",
         "artist": "Sonic the Hedgehog",
-        "url": "audio/02-Green Hill Zone.mp3",
+        "file": "audio/02-Green Hill Zone.mp3",
         "thumbnail": "image/green-hill-zone.png"
     },
     {
         "title": "Marble Zone",
         "artist": "Sonic the Hedgehog",
-        "url": "audio/03-Marble Zone.mp3",
+        "file": "audio/03-Marble Zone.mp3",
         "thumbnail": "image/Marble Zone.jpg"
     },
     {
         "title": "Spring Yard Zone",
         "artist": "Sonic the Hedgehog",
-        "url": "audio/04-Spring Yard Zone.mp3",
+        "file": "audio/04-Spring Yard Zone.mp3",
         "thumbnail": "image/Spring Yard Zone.jpg"
     },
     {
         "title": "Boss Battle STH",
         "artist": "Sonic the Hedgehog",
-        "url": "audio/08-Boss.mp3",
+        "file": "audio/08-Boss.mp3",
         "thumbnail": "image/eggman sth1.jpg"
     },
     {
         "title": "Emerald Hill Zone",
         "artist": "Sonic the Hedgehog 2",
-        "url": "audio/02_-_Emerald_Hill_Zone.mp3",
+        "file": "audio/02_-_Emerald_Hill_Zone.mp3",
         "thumbnail": "image/Emerald Hill Zone.jpg"
     },
     {
         "title": "Chemcial Plant",
         "artist": "Sonic the Hedgehog 2",
-        "url": "audio/08-Boss.mp3",
+        "file": "audio/08-Boss.mp3",
         "thumbnail": "image/chemical-plant.jpg"
     },
     {
         "title": "Boss Battle STH2",
         "artist": "Sonic the Hedgehog 2",
-        "url": "audio/13_-_Boss.mp3",
+        "file": "audio/13_-_Boss.mp3",
         "thumbnail": "image/Boss sth2.jpg"
     },
     {
         "title": "Angel Island",
         "artist": "Sonic the Hedgehog 3",
-        "url": "audio/04-angel_island_act_1.mp3",
+        "file": "audio/04-angel_island_act_1.mp3",
         "thumbnail": "image/Angel Island.jpg"
     },
     {
         "title": "Flying Battery",
         "artist": "Sonic the Hedgehog 3",
-        "url": "audio/18-flying_battery_act_1.mp3",
+        "file": "audio/18-flying_battery_act_1.mp3",
         "thumbnail": "image/Flying Battery.jpg"
     },
     {
         "title": "Carnival Night",
         "artist": "Sonic the Hedgehog 3",
-        "url": "audio/10-carnival_night_act_1.mp3",
+        "file": "audio/10-carnival_night_act_1.mp3",
         "thumbnail": "image/Carnival Night.jpg"
     },
     {
         "title": "Boss Battle STH3",
         "artist": "Sonic the Hedgehog 3",
-        "url": "audio/50-s3_act_1_boss.mp3",
+        "file": "audio/50-s3_act_1_boss.mp3",
         "thumbnail": "image/Eggman sth 3.jpg"
     },
     {
         "title": "Final Battle STH3",
         "artist": "Sonic the Hedgehog 3",
-        "url": "audio/53-final_boss.mp3",
+        "file": "audio/53-final_boss.mp3",
         "thumbnail": "image/Eggman final boss sth 3.jpg"
     },
     {
         "title": "Open Your Heart",
         "artist": "Sonic Adventure DX",
-        "url": "audio/06 Open Your Heart (MAIN THEME OF SONIC Adventure).mp3",
+        "file": "audio/06 Open Your Heart (MAIN THEME OF SONIC Adventure).mp3",
         "thumbnail": "image/SA1.jpg"
     },
     {
         "title": "It Doesn't Matter",
         "artist": "Sonic Adventure DX",
-        "url": "audio/01 It Doesnt Matter (THEME OF SONIC).mp3",
+        "file": "audio/01 It Doesnt Matter (THEME OF SONIC).mp3",
         "thumbnail": "image/Sonic sa1.jpg"
     },
     {
         "title": "Escape From the City",
         "artist": "Sonic Adventure 2",
-        "url": "audio/02 Escape from the City.mp3",
+        "file": "audio/02 Escape from the City.mp3",
         "thumbnail": "image/city escape.jpg"
     },
     {
         "title": "It Doesn't Matter SA2",
         "artist": "Sonic Adventure 2",
-        "url": "audio/01 It Doesn't Matter.mp3",
+        "file": "audio/01 It Doesn't Matter.mp3",
         "thumbnail": "image/sonic sa2.jpg"
     },
     {
         "title": "E.G.G.M.A.N",
         "artist": "Sonic Adventure 2",
-        "url": "audio/07_eggman.mp3",
+        "file": "audio/07_eggman.mp3",
         "thumbnail": "image/eggman sa2.jpg"
     },
     {
         "title": "Live and Learn",
         "artist": "Sonic Adventure 2",
-        "url": "audio/08 Live And Learn.mp3",
+        "file": "audio/08 Live And Learn.mp3",
         "thumbnail": "image/Live and Learn.jpg"
     },
     {
         "title": "Sonic Boom",
         "artist": "Sonic CD",
-        "url": "audio/us_sonic_boom_full.mp3",
+        "file": "audio/us_sonic_boom_full.mp3",
         "thumbnail": "image/sonic cd.jpg"
     },
     {
         "title": "Sonic Heroes",
         "artist": "Sonic Heroes",
-        "url": "audio/01 SONIC HEROES.mp3",
+        "file": "audio/01 SONIC HEROES.mp3",
         "thumbnail": "image/sonic heroes.jpg"
     }
 ]

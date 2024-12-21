@@ -10,20 +10,24 @@
   <header>
     <h1>Sonic Sound Oasis</h1>
     <img src="image/sonic the hedgehog.jpg" alt="Sonic the Hedgehog">
-    <div id="searchContainer"></div>
-    <div id="themeSelector">
+    <div id="search-bar">
+      <input type="text" id="search-input" placeholder="Search for a song...">
+      <button id="search-button">Search</button>
+      <button id="clear-button">Clear</button>
+    </div>
+    <div id="theme-selector">
       <label for="theme">Select Theme:</label>
       <select id="theme" name="theme">
         <option value="default">Default</option>
-        <option value="greenHill">Green Hill Zone</option>
-        <option value="chemicalPlant">Chemical Plant</option>
-        <option value="skySanctuary">Sky Sanctuary</option>
+        <option value="green-hill">Green Hill Zone</option>
+        <option value="chemical-plant">Chemical Plant</option>
+        <option value="sky-sanctuary">Sky Sanctuary</option>
       </select>
     </div>
     
   </header>
   <main>
-    <div id="songContainer"></div>
+    <div id="song-list"></div>
   </main>
 
   <script src="script.js"></script>

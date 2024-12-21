@@ -1,192 +1,108 @@
+/* General Styling */
 body {
   font-family: Arial, sans-serif;
   margin: 0;
   padding: 0;
-  background-color: deepskyblue;
 }
 
+/* Header Styling */
 header {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
-  background: rgb(235,229,10);
-  background: radial-gradient(circle, rgba(235,229,10,0.39539565826330536) 0%, rgba(8,27,219,1) 100%);
-  color: #fff;
+  background-color: #222;
+  color: white;
   padding: 10px 20px;
 }
 
 header h1 {
-  margin: 0;
+  font-size: 1.5rem;
 }
-header img {
-  width: 50px;
-  height: auto;
-  border-radius: 50%;
+
+#theme-container {
+  display: flex;
+  align-items: center;
+}
+
+#theme-container label {
   margin-right: 10px;
-  vertical-align: middle;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0,2);
-  border: 2px solid navy;
+  font-size: 1rem;
 }
 
-header img:hover{
-  transition: background-color 0.3s ease-in-out;
-  transform: scale(1.1); /* Scale the image up */
-  transition: transform 0.3s ease-in-out; /* Smooth transition */
-}
-
-body.greenHill-theme {
-  background-image: url('image/green-hill-zone.png');
-  background-size: cover;
-  color: blue;
-}
-body.chemicalPlant-theme {
-  background-image: url('image/chemical-plant.jpg');
-  background-size: cover;
-  color: blue;
-}
-body.skySanctuary-theme {
-  background-image: url('image/sky sanctuary.jpg');
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
-  color: goldenrod;
-}
-
-#searchContainer {
+/* Search Bar Styling */
+#search-bar {
   display: flex;
   justify-content: center;
-  align-items: center;
   margin: 20px 0;
 }
 
-#searchBar {
-  width: 300px;
+#search-bar input {
   padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  margin-right: 10px;
+  font-size: 1rem;
+  width: 300px;
 }
 
-#searchButton,
-#clearButton {
-  padding: 10px 20px;
-  margin-right: 5px;
-  border: none;
-  border-radius: 5px;
-  background-color: #4CAF50;
-  color: white;
+#search-bar button {
+  padding: 10px 15px;
+  font-size: 1rem;
+  margin-left: 5px;
   cursor: pointer;
 }
 
-#searchButton:hover,
-#clearButton:hover {
-  background-color: #45a049;
-}
-
-#themeSelector {
-  display: flex;
-  align-items: center;
-  margin-left: 20px;
-}
-
-#themeSelector label {
-  margin-right: 10px;
-  font-weight: bold;
-}
-
-#themeSelector select {
-  padding: 5px;
-  border-radius: 5px;
-  border: 1px solid #ccc;
-  background-color: #fff;
-  cursor: pointer;
-}
-
-#themeSelector select:focus {
-  outline: none;
-  border-color: #4CAF50;
-}
-
-#songContainer {
-  display: flex;
-  flex-wrap: wrap;
+/* Song List Styling */
+#song-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 20px;
-  justify-content: center;
+  padding: 20px;
 }
 
 .song-item {
-  width: 200px;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  padding: 10px;
-  text-align: center;
-  color: white;
-  background-color: navy;
-}
-
-.song-thumbnail {
-  width: 100%;
-  height: auto;
-  border-radius: 8px;
-}
-
-.play-button {
-  margin-top: 10px;
-  padding: 5px 10px;
-  background-color: #007BFF;
-  color: white;
-  border: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 1px solid #ddd;
   border-radius: 5px;
+  background-color: blue;
+  color: white;
+  padding: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.song-item img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 5px;
+}
+
+.song-item button {
+  margin-top: 10px;
+  padding: 10px 15px;
+  font-size: 1rem;
   cursor: pointer;
 }
 
-/* For phones */
-@media (max-width: 480px) {
-  .song img {
-    max-width: 80%;
-  }
+/* Theme Styles */
+body.default {
+  background-color: #f4f4f4;
 }
 
-/* For tablets */
-@media (min-width: 481px) and (max-width: 768px) {
-  .song {
-    flex-direction: row;
-    align-items: center;
-  }
-
-  .song img {
-    max-width: 120px;
-  }
+body.green-hill {
+  background: url('image/green-hill-zone.png') no-repeat center center/cover;
 }
 
-/* For screens less than 768px wide */
+body.chemical-plant {
+  background: url('image/chemical-plant.jpg') no-repeat center center/cover;
+}
+
+body.sky-sanctuary {
+  background: url('image/sky sanctuary.jpg') no-repeat center center/cover;
+}
+
+/* Mobile Responsiveness */
 @media (max-width: 768px) {
-  header {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  .logo {
-    max-width: 60px;
-  }
-
-  h1 {
-    font-size: 1.2rem;
-  }
-
-  .nav-links {
-    display: none; /* Hide links by default */
-    flex-direction: column;
+  #search-bar input {
     width: 100%;
-    gap: 0.5rem;
-    margin-top: 1rem;
-  }
-
-  .menu-toggle {
-    display: block; /* Show the menu toggle button */
-  }
-
-  .nav-links.show {
-    display: flex; /* Show links when toggle is clicked */
   }
 }

@@ -158,3 +158,35 @@ body.skySanctuary-theme {
     max-width: 120px;
   }
 }
+
+/* For screens less than 768px wide */
+@media (max-width: 768px) {
+  header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .logo {
+    max-width: 60px;
+  }
+
+  h1 {
+    font-size: 1.2rem;
+  }
+
+  .nav-links {
+    display: none; /* Hide links by default */
+    flex-direction: column;
+    width: 100%;
+    gap: 0.5rem;
+    margin-top: 1rem;
+  }
+
+  .menu-toggle {
+    display: block; /* Show the menu toggle button */
+  }
+
+  .nav-links.show {
+    display: flex; /* Show links when toggle is clicked */
+  }
+}
